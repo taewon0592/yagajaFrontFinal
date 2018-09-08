@@ -5,7 +5,7 @@
 <%@include file="/resources/include/yagajaTop.jsp"%>
 <body>
 	<section class="dorne-welcome-area2 bg-img bg-overlay"
-		style="background-image: url(../resources/common/img/bg-img/hero-1.jpg);">
+		style="background-image: url(../resources/common/img/bg-img/mainbg.jpg);">
 	</section>
 	<!-- ***** Contact Area Start ***** -->
 <div class='dorne-contact-area d-md-flex' id="contact">
@@ -20,7 +20,7 @@
 						<!-- Single Features Area -->
 						<div class="col-12 col-sm-6 col-lg-4">
 							<div class="single-features-area mb-50">
-								<img style="height:307px" src="../resources/common/img/bg-img/feature-5.jpg" alt="">
+								<img style="height:307px" src="../resources/common/img/room-img/room_type.jpg" alt="">
 								<!-- Price -->
 								<div class="price-start">
 									<p>핫딜</p>
@@ -39,7 +39,7 @@
 						<!-- Single Features Area -->
 						<div class="col-12 col-sm-6 col-lg-4">
 							<div class="single-features-area mb-50">
-								<img style="height:307px" src="../resources/common/img/bg-img/feature-5.jpg" alt="">
+								<img style="height:307px" src="../resources/common/img/room-img/room_type.jpg" alt="">
 								<!-- Price -->
 								<div class="price-start">
 									<p>핫딜</p>
@@ -60,7 +60,7 @@
 						<!-- Single Features Area -->
 						<div class="col-12 col-sm-6 col-lg-4">
 							<div class="single-features-area mb-50">
-								<img style="height:307px" src="../resources/common/img/bg-img/feature-5.jpg" alt="">
+								<img style="height:307px" src="../resources/common/img/room-img/room_type.jpg" alt="">
 								<!-- Price -->
 								<div class="price-start">
 									<p>핫딜</p>
@@ -80,7 +80,7 @@
 						<!-- Single Features Area -->
 						<div class="col-12 col-sm-6 col-lg-4">
 							<div class="single-features-area mb-50">
-								<img style="height:307px" src="../resources/common/img/bg-img/feature-5.jpg" alt="">
+								<img style="height:307px" src="../resources/common/img/room-img/room_type.jpg" alt="">
 								<!-- Price -->
 								<div class="price-start">
 									<p>핫딜</p>
@@ -100,7 +100,7 @@
 						<!-- Single Features Area -->
 						<div class="col-12 col-sm-6 col-lg-4">
 							<div class="single-features-area mb-50">
-								<img style="height:307px" src="../resources/common/img/bg-img/feature-5.jpg" alt="">
+								<img style="height:307px" src="../resources/common/img/room-img/room_type.jpg" alt="">
 								<!-- Price -->
 								<div class="price-start">
 									<p>핫딜</p>
@@ -119,7 +119,7 @@
 						</div>
 						<div class="col-12 col-sm-6 col-lg-4">
 							<div class="single-features-area mb-50">
-								<img style="height:307px" src="../resources/common/img/bg-img/room_type.jpg" alt="">
+								<img style="height:307px" src="../resources/common/img/room-img/room_type.jpg" alt="">
 								<!-- Price -->
 								<div class="price-start">
 									<p>핫딜</p>

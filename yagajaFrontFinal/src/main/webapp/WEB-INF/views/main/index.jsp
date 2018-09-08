@@ -3,49 +3,48 @@
 <!DOCTYPE html>
 
 <html lang="en">
+
 <%@include file="/resources/include/yagajaTop.jsp" %>
+
 <body>
 
     <!-- ***** Welcome Area Start ***** -->
-    <section class="dorne-welcome-area bg-img bg-overlay" style="background-image: url(../resources/common/img/bg-img/hero-1.jpg);">
+    <section class="dorne-welcome-area bg-img bg-overlay" style="background-image: url(../resources/common/img/bg-img/mainbg.jpg);">
         <div class="container h-100">
             <div class="row h-100 align-items-center justify-content-center">
                 <div class="col-12 col-md-10">
                     <div class="hero-content">
-                        <h2 style="color:pink; text-size:4em">야가자</h2>
+                        <h2>Yagaja 와 함께</h2>
+                        <h4>여행을 떠나 볼까요?</h4>
                     </div>
                     <!-- Hero Search Form -->
-                    <div class="hero-search-form">
-                        <!-- Tabs -->
-                     <!--    <div class="nav nav-tabs" id="heroTab" role="tablist">
-                            <a class="nav-item nav-link active" id="nav-places-tab" data-toggle="tab" href="#nav-places" role="tab" aria-controls="nav-places" aria-selected="true">검색</a>
-                        </div> -->
+               <div class="hero-search-form">
+                        
                         <!-- Tabs Content -->
-                        <div class="tab-content" id="nav-tabContent" >
-                            <div class="tab-pane fade show active" id="nav-places" role="tabpanel" aria-labelledby="nav-places-tab" >
-                                <h6>뭐찾냐</h6>
-                                <form action="#" method="get"> 
+                        <div class="tab-content" id="nav-tabContent">
+                            <div style="background-color:white;" class="tab-pane fade show active" id="nav-places" role="tabpanel" aria-labelledby="nav-places-tab">
+
+                                <form action="#" method="get">
                                     <select class="custom-select">
-                                        <option selected>Your Destinations</option>
-                                        <option value="1">New York</option>
-                                        <option value="2">Latvia</option>
-                                        <option value="3">Dhaka</option>
-                                        <option value="4">Melbourne</option>
-                                        <option value="5">London</option>
+                                        <option selected >숙박유형</option>
+                                        <option value="1">모텔</option>
+                                        <option value="2">호텔</option>
+                                        <option value="3">펜션</option>
+                                        <option value="4">게스트하우스</option>
                                     </select>
                                     <select class="custom-select">
-                                        <option selected>All Catagories</option>
+                                        <option selected>체크인</option>
                                         <option value="1">Catagories 1</option>
                                         <option value="2">Catagories 2</option>
                                         <option value="3">Catagories 3</option>
                                     </select>
                                     <select class="custom-select">
-                                        <option selected>Price Range</option>
+                                        <option selected>체크아웃</option>
                                         <option value="1">$100 - $499</option>
                                         <option value="2">$500 - $999</option>
                                         <option value="3">$1000 - $4999</option>
                                     </select>
-                                    <button type="submit" class="btn dorne-btn"><i class="fa fa-search pr-2" aria-hidden="true"></i>검색</button>
+                                    <button type="submit" class="btn dorne-btn" style="background-color:#ff3479"><i class="fa fa-search pr-2" aria-hidden="true"></i>숙소검색</button>
                                 </form>
                             </div>
                             <div class="tab-pane fade" id="nav-events" role="tabpanel" aria-labelledby="nav-events-tab">
@@ -79,25 +78,12 @@
                 </div>
             </div>
         </div>
- <!--        Hero Social Btn
-        <div class="hero-social-btn">
-            <div class="social-title d-flex align-items-center">
-                <h6>Follow us on Social Media</h6>
-                <span></span>
-            </div>
-            <div class="social-btns">
-                <a href="#"><i class="fa fa-linkedin" aria-haspopup="true"></i></a>
-                <a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a>
-                <a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
-                <a href="#"><i class="fa fa-twitter" aria-haspopup="true"></i></a>
-                <a href="#"><i class="fa fa-facebook" aria-haspopup="true"></i></a>
-            </div>
-        </div> -->
+
     </section>
     <!-- ***** Welcome Area End ***** -->
 
     <!-- ***** Catagory Area Start ***** -->
-    <section class="dorne-catagory-area">
+    <section style="background-color:#ff3479;"class="dorne-catagory-area">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -105,66 +91,55 @@
                         <div class="row">
                             <!-- Single Catagory Area -->
                             <div class="col-12 col-sm-6 col-md">
-                                <div class="single-catagory-area wow fadeInUpBig" style="background-color:#FF3478" data-wow-delay="0.2s">
-                                    <div class="catagory-content">
-                                        <img src="../resources/common/img/core-img/icon-1.png" alt="">
+                                <div style="background-color:white;" class="single-catagory-area wow fadeInUpBig" data-wow-delay="0.2s">
+                                    <div class="catagory-content" >
+                                        <img src="../resources/common/img/core-img/motel.png" alt="">
                                         <a href="#">
-                                            <h6>모텔</h6>
+                                            <h6 style="color:black;">모텔</h6>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Single Catagory Area -->
+                            <div class="col-12 col-sm-6 col-md" >
+                                <div style="background-color:white;" class="single-catagory-area wow fadeInUpBig" data-wow-delay="0.3s">
+                                    <div class="catagory-content">
+                                        <img src="../resources/common/img/core-img/hotel.png" alt="">
+                                        <a href="#">
+                                            <h6 style="color:black;">호텔</h6>
                                         </a>
                                     </div>
                                 </div>
                             </div>
                             <!-- Single Catagory Area -->
                             <div class="col-12 col-sm-6 col-md">
-                                <div class="single-catagory-area wow fadeInUpBig" style="background-color:#FF3478" data-wow-delay="0.4s">
+                                <div style="background-color:white;" class="single-catagory-area wow fadeInUpBig" data-wow-delay="0.4s">
                                     <div class="catagory-content">
-                                        <img src="../resources/common/img/core-img/icon-2.png" alt="">
+                                        <img src="../resources/common/img/core-img/pension.png" alt="">
                                         <a href="#">
-                                            <h6>호텔/리조트</h6>
+                                            <h6 style="color:black;">펜션</h6>
                                         </a>
-                                    </div>
+                                    </div> 
                                 </div>
-                            </div>
+                            </div> 
                             <!-- Single Catagory Area -->
                             <div class="col-12 col-sm-6 col-md">
-                                <div class="single-catagory-area wow fadeInUpBig" style="background-color:#FF3478" data-wow-delay="0.6s">
+                                <div style="background-color:white;" class="single-catagory-area wow fadeInUpBig" data-wow-delay="0.5s">
                                     <div class="catagory-content">
-                                        <img src="../resources/common/img/core-img/icon-3.png" alt="">
+                                        <img src="../resources/common/img/core-img/guesthouse.png" alt="">
                                         <a href="#">
-                                            <h6>펜션/풀빌라</h6>
+                                            <h6 style="color:black;">게스트하우스</h6>
                                         </a>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Single Catagory Area -->
-                            <div class="col-12 col-sm-6 col-md">
-                                <div class="single-catagory-area wow fadeInUpBig"  style="background-color:#FF3478" data-wow-delay="0.8s">
-                                    <div class="catagory-content">
-                                        <img src="../resources/common/img/core-img/icon-4.png" alt="">
-                                        <a href="#">
-                                            <h6>게스트하우스</h6>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-						<!--   Single Catagory Area
-                            <div class="col-12 col-md">
-                                <div class="single-catagory-area wow fadeInUpBig" data-wow-delay="1s">
-                                    <div class="catagory-content">
-                                        <img src="../resources/common/img/core-img/icon-5.png" alt="">
-                                        <a href="#">
-                                            <h6>Cinema</h6>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div> -->
+                            
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- ***** Catagory Area End ***** -->
 
     <!-- ***** About Area Start ***** -->
     <section class="dorne-about-area section-padding-0-100">

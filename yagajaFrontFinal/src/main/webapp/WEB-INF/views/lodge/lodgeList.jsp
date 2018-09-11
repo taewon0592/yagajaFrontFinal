@@ -45,7 +45,9 @@
 						<c:forEach items="${lists }" var="row" varStatus="loop">
 						<div class="col-12 col-sm-6 col-lg-4">
 							<div class="single-features-area mb-50">
-								<img style="height:307px" src="../resources/common/img/room-img/${row.lodge_photo }" alt="">
+								<a href="../lodge/lodgeView.do?mode=${row.lodge_type }&lodge_no=${row.lodge_no}">
+									<img style="height:307px" src="../resources/common/img/room-img/${row.lodge_photo }" alt="">
+								</a>
 								<!-- Price -->
 								<div class="price-start">
 									<p>${row.lodge_feature }</p>
@@ -70,8 +72,6 @@
 							</div>
 						</div>
 						</c:forEach>
-						
-						
 					</div>
 					<div class="row text-center">
 						<ul style="padding:0px 200px;" class=" pagination col-12" >
@@ -79,11 +79,7 @@
 								${pagingImg }
 						</ul>
 					</div>
-				</form>
-
-					
-
-								
+				</form>							
 			</div>
 			
 

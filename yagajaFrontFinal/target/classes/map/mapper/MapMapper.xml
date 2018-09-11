@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="map.MapDAOImpl">
+	
+	<!-- 직접 검색 -->
+	<select id="mapSearch" resultType="map.MapDTO">			
+		select a.addr_common, a.addr_detail, l.lodge_type, l.lodge_name, l.lodge_no	
+			from lodge_addr a, lodge l	
+				where a.lodge_no=l.lodge_no and (addr_common like #{0} 	
+					or addr_detail like #{0} or lodge_name like #{0}) 
+	</select>
+	
+	<!-- 시도군 검색 -->
+	<select id="search_local" resultType="map.MapDTO">
+		select * from lodge_addr where addr_common like #{0}
+	</select>
+	
+	<!-- 데이터 불러오기 -->
+	<select id="mapData" resultType="map.MapDTO">
+		select * from lodge_addr
+	</select>
+	
+</mapper>
+

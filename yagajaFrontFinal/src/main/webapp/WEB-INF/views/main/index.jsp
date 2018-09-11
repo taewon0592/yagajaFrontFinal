@@ -92,7 +92,7 @@
                             <!-- Single Catagory Area -->
                             <div class="col-12 col-sm-6 col-md">
                                 <div style="background-color:white;" class="single-catagory-area wow fadeInUpBig" data-wow-delay="0.2s">
-                                    <a href="../lodge/List.do?mode=모텔">
+                                    <a href="../lodge/lodgeList.do?mode=모텔">
                                     <div class="catagory-content" >
                                        
                                         <img src="../resources/common/img/core-img/motel.png" alt="">
@@ -105,7 +105,7 @@
                             <!-- Single Catagory Area -->
                             <div class="col-12 col-sm-6 col-md" >
                                 <div style="background-color:white;" class="single-catagory-area wow fadeInUpBig" data-wow-delay="0.3s">
-                                   <a href="../lodge/List.do?mode=호텔/리조트">
+                                   <a href="../lodge/lodgeList.do?mode=호텔/리조트">
                                     <div class="catagory-content">
                                         <img src="../resources/common/img/core-img/hotel.png" alt="">
                                      	  
@@ -118,7 +118,7 @@
                             <!-- Single Catagory Area -->
                             <div class="col-12 col-sm-6 col-md">
                                 <div style="background-color:white;" class="single-catagory-area wow fadeInUpBig" data-wow-delay="0.4s">
-                                    <a href="../lodge/List.do?mode=펜션/풀빌라">
+                                    <a href="../lodge/lodgeList.do?mode=펜션/풀빌라">
                                     <div class="catagory-content">
                                         <img src="../resources/common/img/core-img/pension.png" alt="">
                                         
@@ -131,7 +131,7 @@
                             <!-- Single Catagory Area -->
                             <div class="col-12 col-sm-6 col-md">
                                 <div style="background-color:white;" class="single-catagory-area wow fadeInUpBig" data-wow-delay="0.5s">
-                                    <a href="../lodge/List.do?mode=게스트하우스">
+                                    <a href="../lodge/lodgeList.do?mode=게스트하우스">
                                     <div class="catagory-content">
                                         <img src="../resources/common/img/core-img/guesthouse.png" alt="">
                                         

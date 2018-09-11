@@ -1,5 +1,7 @@
 package yagajaFront.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
@@ -8,23 +10,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller
-public class YagajaAuctionController 
-{
+import hotdeal.HotdealDAO;
+import hotdeal.HotdealDTO;
+import hotdeal.HotdealImpl;
+import yagajaFront.model.PagingUtil;
 
+@Controller
+public class HotdealController {
+
+	HotdealDAO dao;
+	public void setDao(HotdealDAO dao) {
+		this.dao = dao;
+	}
+	
 	@Autowired
 	private SqlSession sqlSession;
 	
-	@RequestMapping("/auction/auctionList.do")
-	public String auctionList(Model model, HttpServletRequest req)
-	{
-		return "auction/auctionList";
-	}
-	@RequestMapping("/auction/auctionView.do")
-	public String auctionView(Model model, HttpServletRequest req)
-	{
-		return "auction/auctionView";
-	}
 	
-
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="hotdeal.HotdealImpl">
+	<select id="getTotalCount" resultType="int">
+   		SELECT count(*) from hotdeal 
+   </select>
+   
+    <select id="hotdealList" resultType="hotdeal.HotdealDTO">
+   		SELECT * FROM (SELECT Tb.*, rownum rNum FROM (SELECT H.*, L.lodge_name,L.lodge_type, L.lodge_feature,R.room_type FROM hotdeal H INNER JOIN lodge L ON H.lodge_no=L.lodge_no INNER JOIN room R ON H.room_no = r.room_no WHERE 1=1 ORDER BY hotdeal_no DESC) Tb) WHERE rNum BETWEEN #{param1} and #{param2}
+   </select>
+</mapper>

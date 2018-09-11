@@ -15,10 +15,10 @@ public class YagajaReservationController
 	@Autowired
 	private SqlSession sqlSession;
 	
-	@RequestMapping("/main/reservation.do")
+	@RequestMapping("/reser/reservation.do")
 	public String reservation(Model model, HttpServletRequest req)
 	{
-		return "main/reservation";
+		return "reser/reservation";
 	}
 	
 	

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,26 +63,42 @@
                                 </li>
                                 
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link" href="./main/auctionList.do" style="color:black;">경매</a>
+                                    <a class="nav-link" href="../auction/auctionList.do" style="color:black;">경매</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="contact.html" style="color:black;">핫딜</a>
+                                    <a class="nav-link" href="../hotdeal/hotdealList.do" style="color:black;">핫딜</a>
                                 </li>
                             </ul>
                             <div class="dorne-signin-btn"> 
                                 <a style="color:black;" href="#">공지사항</a>
                             </div>
-                            <div class="dorne-signin-btn"> 
-                                <a style="color:black;" href="#">예약내역</a>
-                            </div>
-                            <!-- Signin btn -->
-                            <div class="dorne-signin-btn">
-                                <a style="color:black;" href="#">회원가입</a>
-                            </div>
-                            <!-- Add listings btn -->
-                            <div class="dorne-add-listings-btn" >
-                                <a href="#" class="btn dorne-btn" style="background-color:#ff3479; border-radius:1em;">로그인</a>
-                            </div>
+                            <c:choose>
+                            	<c:when test="${not empty sessionScope.siteUserInfo }">
+                            		<div class="dorne-signin-btn">
+		                              	  <a style="color:black;" href="#">예약내역</a>
+		                            </div>
+		                            <!-- 마이페이지 -->
+		                            <div class="dorne-signin-btn">
+		                                <a style="color:black;" href="../member/mypageinfo.do?member_no=${sessionScope.siteUserInfo.member_no }&id=${sessionScope.siteUserInfo.id }">마이페이지</a>
+		                            </div>
+		                            <!-- 로그인 -->
+		                            <div class="dorne-add-listings-btn" >
+		                                <a href="../member/logout.do" class="btn dorne-btn" style="background-color:#ff3479; border-radius:1em;">
+			                               	 로그아웃
+		                                </a>
+		                            </div>
+		                 		</c:when>
+                            	<c:otherwise>
+		                            <!-- Signin btn -->
+		                            <div class="dorne-signin-btn">
+		                                <a style="color:black;" href="../member/memberjoin.do">회원가입</a>
+		                            </div>
+		                            <!-- Add listings btn -->
+		                            <div class="dorne-add-listings-btn" >
+		                                <a href="../member/login.do" class="btn dorne-btn" style="background-color:#ff3479; border-radius:1em;">로그인</a>
+		                            </div>
+                            	</c:otherwise>
+                          </c:choose>
                         </div>
                     </nav>
                 </div>

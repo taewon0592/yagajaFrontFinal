@@ -1,30 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    
 
-    
-<!-- 
-Mybatis 쿼리 성공시 반환값
-
-Select : select 문에 해당하는 결과를 반환한다.
-	아래와 같이 select 결과가 MyBoardDTO 타입이라면 패키지명을 포함한 클래스 경로를 resultType 속성에 써준다.
-	
-Insert : 무조건 1을 반환한다.
-	만약 insert 가 여러개 되더라도 성공시에는 1을 반환하게 된다.
-	
-Update : 업데이트 된 행의 개수를 반환한다.
-	만약 업데이트 된 행이 없다면 0 을 반환한다.
-	
-Delete : 삭제된 행의 개수를 반환한다.
-	역시나 없다면 0을 반환한다.
- -->
-
-<mapper namespace="lodge.LodgeDAOImpl">
-
-	<select id="getTotalCount" resultType="int">
+<mapper namespace="lodge.YagajaLodgeImpl">
+   <select id="lodgeView" resultType="lodge.YagajaLodgeVO">
+      SELECT * FROM lodge l inner join lodge_addr a on l.lodge_no = a.lodge_no inner join room r on a.lodge_no = r.lodge_no where l.lodge_no=#{param1}   </select>
+   
+   <select id="getTotalCount" resultType="int">
 		SELECT COUNT(*) FROM lodge where lodge_type=#{param1}
 	</select>
 	
@@ -69,8 +52,6 @@ Delete : 삭제된 행의 개수를 반환한다.
 		) 
 		WHERE 
 			rNum BETWEEN #{start} and #{end} 
-			
-		
 	</select>
-
-</mapper>
+   
+</mapper>    

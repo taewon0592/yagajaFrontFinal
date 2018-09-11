@@ -61,7 +61,12 @@ public class LodgeController {
 		model.addAttribute("lists", lists);
 		
 		return "lodge/lodgeList"; 
-		 
-		
 	}
+	
+	@RequestMapping("/main/index.do")
+	public String main(Model model)
+	{
+		return "main/index";
+	}
+	
 }

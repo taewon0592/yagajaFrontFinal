@@ -41,10 +41,10 @@
 	</beans:bean>	
 	
 	<!-- babatis 이용한 방명록 제작 1차버전 : JDBCTemplate을 이용하기 위한 빈 생성 -->
-	 <beans:bean name="myDao" class="member.YagajaMemberDAO"> 
+	<!--  <beans:bean name="myDao" class="member.YagajaMemberDAO"> 
 		<beans:property name="template" ref="template">
 		</beans:property>
-	</beans:bean>
+	</beans:bean> -->
 	
 	<!-- Mybatis 이용한 방명록 제작 2차버전 : Mybatis 로 컨버팅하기 -->
 	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

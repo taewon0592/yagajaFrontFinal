@@ -53,7 +53,7 @@
             <div class="row h-100">
                 <div class="col-12 h-100">
                     <nav class="h-100 navbar navbar-expand-lg">
-                        <a class="navbar-brand" href="./index.do"><img src="../resources/common/img/core-img/logo.png" alt=""></a>
+                        <a class="navbar-brand" href="../main/index.do"><img src="../resources/common/img/core-img/logo.png" alt=""></a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#dorneNav" aria-controls="dorneNav" aria-expanded="false" aria-label="Toggle navigation"><span class="fa fa-bars"></span></button>
                         <!-- Nav -->
                         <div style="background-color:white;" class="collapse navbar-collapse" id="dorneNav">
@@ -97,7 +97,7 @@
                             </div>
                             <!-- Add listings btn -->
                             <div class="dorne-add-listings-btn" >
-                                <a href="#" class="btn dorne-btn" style="background-color:#ff3479;">로그인</a>
+                                <a href="#" class="btn dorne-btn" style="background-color:#ff3479; border-radius:1em;">로그인</a>
                             </div>
                         </div>
                     </nav>

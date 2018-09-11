@@ -9,7 +9,6 @@
 <body>
 <h2>
 <a href="./main/index.do">메인페이지</a>
-<a href="./main/list.do">리스트페이지</a>
 
 
 </h2>

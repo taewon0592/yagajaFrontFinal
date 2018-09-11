@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+
+    
+<!-- 
+Mybatis 쿼리 성공시 반환값
+
+Select : select 문에 해당하는 결과를 반환한다.
+	아래와 같이 select 결과가 MyBoardDTO 타입이라면 패키지명을 포함한 클래스 경로를 resultType 속성에 써준다.
+	
+Insert : 무조건 1을 반환한다.
+	만약 insert 가 여러개 되더라도 성공시에는 1을 반환하게 된다.
+	
+Update : 업데이트 된 행의 개수를 반환한다.
+	만약 업데이트 된 행이 없다면 0 을 반환한다.
+	
+Delete : 삭제된 행의 개수를 반환한다.
+	역시나 없다면 0을 반환한다.
+ -->
+
+<mapper namespace="lodge.LodgeDAOImpl">
+
+	<select id="getTotalCount" resultType="int">
+		SELECT COUNT(*) FROM lodge where lodge_type=#{param1}
+	</select>
+	
+	<select id="listPage" resultType="lodge.LodgeDTO" parameterType="lodge.ParamListVO">
+		SELECT * FROM 
+		(
+    		SELECT Tb.*, rownum rNum FROM 
+    		(
+        		SELECT distinct L.*, R.d_sleep_price, R.w_sleep_price, R.d_rent_price, R.w_rent_price 
+					FROM lodge L INNER JOIN room R ON L.lodge_no = R.lodge_no
+				WHERE 
+    				((L.lodge_no, R.w_sleep_price) in
+        		(
+           			SELECT  L.lodge_no, min(R.w_sleep_price)
+           				FROM lodge L INNER JOIN room R ON L.lodge_no = R.lodge_no
+            			WHERE 1=1 
+            				group by L.lodge_no
+        		))
+        		
+        		<choose>
+           				
+					<when test="mode != null and mode.equals('모텔')">
+					and lodge_type=#{mode}
+					</when>
+					
+					<when test="mode != null and mode.equals('호텔/리조트')">
+					and lodge_type=#{mode}
+					</when>
+					
+					<when test="mode != null and mode.equals('펜션/풀빌라')">
+					and lodge_type=#{mode}
+					</when>
+					
+					<otherwise>
+					and lodge_type='게스트하우스'
+					</otherwise>
+					
+				</choose>
+        		
+				ORDER BY L.lodge_no DESC
+    		) Tb
+		) 
+		WHERE 
+			rNum BETWEEN #{start} and #{end} 
+			
+		
+	</select>
+
+</mapper>

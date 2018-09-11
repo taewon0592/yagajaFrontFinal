@@ -22,29 +22,29 @@
                         
                         <!-- Tabs Content -->
                         <div class="tab-content" id="nav-tabContent">
-                            <div style="background-color:white;" class="tab-pane fade show active" id="nav-places" role="tabpanel" aria-labelledby="nav-places-tab">
+                            <div style="background-color:rgba(255,255,255,0.2); border-radius:1em;" class="tab-pane fade show active" id="nav-places" role="tabpanel" aria-labelledby="nav-places-tab">
 
                                 <form action="#" method="get">
-                                    <select class="custom-select">
+                                    <select class="custom-select" style="background-color:rgba(255,255,255,0.7); border-radius:1em;">
                                         <option selected >숙박유형</option>
                                         <option value="1">모텔</option>
                                         <option value="2">호텔</option>
                                         <option value="3">펜션</option>
                                         <option value="4">게스트하우스</option>
                                     </select>
-                                    <select class="custom-select">
+                                    <select class="custom-select" style="background-color:rgba(255,255,255,0.7); border-radius:1em;">
                                         <option selected>체크인</option>
                                         <option value="1">Catagories 1</option>
                                         <option value="2">Catagories 2</option>
                                         <option value="3">Catagories 3</option>
                                     </select>
-                                    <select class="custom-select">
+                                    <select class="custom-select" style="background-color:rgba(255,255,255,0.7); border-radius:1em;">
                                         <option selected>체크아웃</option>
                                         <option value="1">$100 - $499</option>
                                         <option value="2">$500 - $999</option>
                                         <option value="3">$1000 - $4999</option>
                                     </select>
-                                    <button type="submit" class="btn dorne-btn" style="background-color:#ff3479"><i class="fa fa-search pr-2" aria-hidden="true"></i>숙소검색</button>
+                                    <button type="submit" class="btn dorne-btn" style="background-color:#ff3479; border-radius:1em;"><i class="fa fa-search pr-2" aria-hidden="true"></i>숙소검색</button>
                                 </form>
                             </div>
                             <div class="tab-pane fade" id="nav-events" role="tabpanel" aria-labelledby="nav-events-tab">
@@ -92,45 +92,53 @@
                             <!-- Single Catagory Area -->
                             <div class="col-12 col-sm-6 col-md">
                                 <div style="background-color:white;" class="single-catagory-area wow fadeInUpBig" data-wow-delay="0.2s">
+                                    <a href="../lodge/List.do?mode=모텔">
                                     <div class="catagory-content" >
+                                       
                                         <img src="../resources/common/img/core-img/motel.png" alt="">
-                                        <a href="#">
                                             <h6 style="color:black;">모텔</h6>
-                                        </a>
+                                        
                                     </div>
+                                    </a>
                                 </div>
                             </div>
                             <!-- Single Catagory Area -->
                             <div class="col-12 col-sm-6 col-md" >
                                 <div style="background-color:white;" class="single-catagory-area wow fadeInUpBig" data-wow-delay="0.3s">
+                                   <a href="../lodge/List.do?mode=호텔/리조트">
                                     <div class="catagory-content">
                                         <img src="../resources/common/img/core-img/hotel.png" alt="">
-                                        <a href="#">
+                                     	  
                                             <h6 style="color:black;">호텔</h6>
-                                        </a>
+                                         
                                     </div>
+                                    </a>
                                 </div>
                             </div>
                             <!-- Single Catagory Area -->
                             <div class="col-12 col-sm-6 col-md">
                                 <div style="background-color:white;" class="single-catagory-area wow fadeInUpBig" data-wow-delay="0.4s">
+                                    <a href="../lodge/List.do?mode=펜션/풀빌라">
                                     <div class="catagory-content">
                                         <img src="../resources/common/img/core-img/pension.png" alt="">
-                                        <a href="#">
+                                        
                                             <h6 style="color:black;">펜션</h6>
-                                        </a>
-                                    </div> 
+                                        
+                                    </div>
+                                    </a>
                                 </div>
                             </div> 
                             <!-- Single Catagory Area -->
                             <div class="col-12 col-sm-6 col-md">
                                 <div style="background-color:white;" class="single-catagory-area wow fadeInUpBig" data-wow-delay="0.5s">
+                                    <a href="../lodge/List.do?mode=게스트하우스">
                                     <div class="catagory-content">
                                         <img src="../resources/common/img/core-img/guesthouse.png" alt="">
-                                        <a href="#">
+                                        
                                             <h6 style="color:black;">게스트하우스</h6>
-                                        </a>
+                                        
                                     </div>
+                                    </a>
                                 </div>
                             </div>
                             

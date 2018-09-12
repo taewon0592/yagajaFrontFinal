@@ -71,35 +71,39 @@ System.out.println(search_local);
                                   </div>
                                   </ul>
                                </nav>
-                            </div>
+                            </div> 
                             
                             <br /><br /><br />
                             <div class="place-room">
                                <table style="width:100%; height:300px;">
                                <c:forEach items="${lodgeLists }" var="row" >
-                                  <tr>
-                                     <td rowspan="5"><img style="width:350px; height:250px; padding:5px; margin:5px" src="../resources/photo/lodge/${row.room_photo}" /></td>
-                                     <td colspan="2" style="font-size:20px"text-style="bold">${row.room_type }</td>
-                                     
-                                  </tr>
-                                  <tr>
-                                     <td colspan="2" style="font-size:12px; vertical-align:top">기준 ${row.room_person } 명 (최대 ${row.room_person } 명)</td>
-                                  </tr>
-                                  <tr>
-                                     <td style="font-size:12px"><input type="radio" name="select" value="rent" /><font color="red">주말</font> / 주중 대실</td>
-                                     <td style="font-size:20px; text-align:right"><font color="red"><b>${row.w_rent_price }</b></font> / <b>${row.d_rent_price }</b></td>
-                                  </tr>
-                                  <tr>
-                                     <td style="font-size:12px">
-                                        <input type="radio" name="select" value="sleep" /><font color="red">주말</font> / 주중 숙박
-                                     </td>
-                                     <td style="font-size:20px; text-align:right"><font color="red"><b>${row.w_sleep_price }</b></font> / <b>${row.d_sleep_price }</b> </td>
-                                  </tr>
-                                  <tr>
-                                     <td colspan="2">
-                                        <button class="btn btn-danger" style="width:100%; text-align:center" onclick="location.href='../reser/reservation.do?lodge_no=${row.lodge_no}&room_no=${row.room_no }';">예약 하기</button>
-                                     </td>
-                                  </tr>
+                                  <form action="../reser/reservationView.do" method="get" name="reserFrm">
+	                                  <tr>
+	                                     <td rowspan="5"><img style="width:350px; height:250px; padding:5px; margin:5px" src="../resources/common/img/room-img/${row.room_photo}" /></td>
+	                                     <td colspan="2" style="font-size:20px"text-style="bold">${row.room_type }</td>
+	                                     <input type="hidden" value="${row.lodge_no }" name="lodge_no" />
+	                                     <input type="hidden" value="${row.room_no }" name="room_no" />
+	                                     
+	                                  </tr>
+	                                  <tr>
+	                                     <td colspan="2" style="font-size:12px; vertical-align:top">기준 ${row.room_person } 명 (최대 ${row.room_person } 명)</td>
+	                                  </tr>
+	                                  <tr>
+	                                     <td style="font-size:12px"><input type="radio" name="select" value="rent" /><font color="red">주말</font> / 주중 대실</td>
+	                                     <td style="font-size:20px; text-align:right"><font color="red"><b>${row.w_rent_price }</b></font> / <b>${row.d_rent_price }</b></td>
+	                                  </tr>
+	                                  <tr>
+	                                     <td style="font-size:12px">
+	                                        <input type="radio" name="select" value="sleep" /><font color="red">주말</font> / 주중 숙박
+	                                     </td>
+	                                     <td style="font-size:20px; text-align:right"><font color="red"><b>${row.w_sleep_price }</b></font> / <b>${row.d_sleep_price }</b> </td>
+	                                  </tr>
+	                                  <tr>
+	                                     <td colspan="2">
+	                                        <button type="submit" class="btn btn-danger" style="width:100%; text-align:center">예약 하기</button>
+	                                     </td>
+	                                  </tr>
+                                  </form>
                                </c:forEach>
                                   
                                </table>

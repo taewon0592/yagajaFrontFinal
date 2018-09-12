@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="reservation.ReservationImpl">
+	<!-- 로그인 -->
+	<select id="reserView" resultType="reservation.ReservationVO">
+		select * from 
+			lodge L inner join room R on L.lodge_no=R.lodge_no 
+					inner join lodge_addr A on L.lodge_no=A.lodge_no
+						where L.lodge_no=#{param1} and R.room_no=#{param2}
+	</select>
+	
+	<insert id="insertReser" parameterType="reservation.ReservationVO">
+		insert into reservation (reser_no, reser_name, check_in, check_out, visit_type, payment_type, payment_price, lodge_no, member_no, room_no)
+		values(reservation_no_seq.nextval, #{reser_name}, to_date(#{check_in},'yyyy-mm-dd hh24:mi:ss'), to_date(#{check_out},'yyyy-mm-dd hh24:mi:ss'), #{visit_type}, #{payment_type}, #{payment_price}, #{lodge_no}, #{member_no}, #{room_no})
+	</insert>
+	
+	<update id="insertM_point">
+		update member set m_point=#{param1} where member_no=#{param2}
+	</update>
+	
+
+</mapper>

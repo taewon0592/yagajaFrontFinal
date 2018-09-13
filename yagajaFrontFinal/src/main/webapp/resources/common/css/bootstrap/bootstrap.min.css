@@ -206,15 +206,14 @@ sup {
 }
 
 a {
-	color: #rgb(255,52,121);
 	text-decoration: none;
 	background-color: transparent;
 	-webkit-text-decoration-skip: objects
 }
 
 a:hover {
-	color: #fff;
-	text-decoration: underline
+	color: rgb(255,52,121);
+	text-decoration: underline;
 }
 
 a:not ([href] ):not ([tabindex] ){

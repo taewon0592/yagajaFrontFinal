@@ -223,6 +223,7 @@ a,
 a:hover,
 a:focus,
 a:active {
+	
     text-decoration: none;
     -webkit-transition-duration: 500ms;
     transition-duration: 500ms;
@@ -992,7 +993,7 @@ li {
 .contact-form-area {
 	position: relative;
 	z-index: 1;
-	padding: 100px 40px 100px 50px;
+	padding: 50px 40px 100px 50px;
 }
 
 .contact-form-area,
@@ -1461,3 +1462,4 @@ li {
 	background-color: #fff;
 	border-color: #ddd
 }
+

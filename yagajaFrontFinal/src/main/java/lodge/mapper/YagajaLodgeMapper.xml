@@ -16,42 +16,45 @@
 		(
     		SELECT Tb.*, rownum rNum FROM 
     		(
-        		SELECT distinct L.*, R.d_sleep_price, R.w_sleep_price, R.d_rent_price, R.w_rent_price 
-					FROM lodge L INNER JOIN room R ON L.lodge_no = R.lodge_no
-				WHERE 
-    				((L.lodge_no, R.w_sleep_price) in
-        		(
-           			SELECT  L.lodge_no, min(R.w_sleep_price)
-           				FROM lodge L INNER JOIN room R ON L.lodge_no = R.lodge_no
-            			WHERE 1=1 
-            				group by L.lodge_no
-        		))
-        		
-        		<choose>
-           				
-					<when test="mode != null and mode.equals('모텔')">
-					and lodge_type=#{mode}
-					</when>
-					
-					<when test="mode != null and mode.equals('호텔/리조트')">
-					and lodge_type=#{mode}
-					</when>
-					
-					<when test="mode != null and mode.equals('펜션/풀빌라')">
-					and lodge_type=#{mode}
-					</when>
-					
-					<otherwise>
-					and lodge_type='게스트하우스'
-					</otherwise>
-					
-				</choose>
-        		
-				ORDER BY L.lodge_no DESC
-    		) Tb
-		) 
-		WHERE 
-			rNum BETWEEN #{start} and #{end} 
+        		SELECT distinct L.*, R.d_sleep_price, R.w_sleep_price, R.d_rent_price, R.w_rent_price,
+        			A.addr_common, A.addr_detail, A.addr_zipcode, A.addr_lat, A.addr_long 
+						FROM lodge L INNER JOIN room R ON L.lodge_no = R.lodge_no
+							INNER JOIN lodge_addr A ON A.lodge_no = L.lodge_no
+					WHERE 
+	    				((L.lodge_no, R.w_sleep_price) in
+	        		(
+	           			SELECT  L.lodge_no, min(R.w_sleep_price)
+	           				FROM lodge L INNER JOIN room R ON L.lodge_no = R.lodge_no
+	            			WHERE 1=1 
+	            				group by L.lodge_no
+	        		))
+	        		
+	        		<choose>
+	           				
+						<when test="mode != null and mode.equals('모텔')">
+						and lodge_type=#{mode}
+						</when>
+						
+						<when test="mode != null and mode.equals('호텔/리조트')">
+						and lodge_type=#{mode}
+						</when>
+						
+						<when test="mode != null and mode.equals('펜션/풀빌라')">
+						and lodge_type=#{mode}
+						</when>
+						
+						<otherwise>
+						and lodge_type='게스트하우스'
+						</otherwise>
+						
+					</choose>
+	        		
+					ORDER BY L.lodge_no DESC
+	    		) Tb
+			) 
+			WHERE 
+				rNum BETWEEN #{start} and #{end} 
+		
 	</select>
    
 </mapper>    

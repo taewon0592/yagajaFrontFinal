@@ -6,7 +6,61 @@
 
 <%@include file="/resources/include/yagajaTop.jsp" %>
 
+<!-- jQuery-2.2.4 js -->
+<script src="../resources/common/js/jquery/jquery-2.2.4.min.js"></script>
+<!-- Popper js -->
+<script src="../resources/common/js/bootstrap/popper.min.js"></script>
+<!-- Bootstrap-4 js -->
+<script src="../resources/common/js/bootstrap/bootstrap.min.js"></script>
+<!-- All Plugins js -->
+<script src="../resources/common/js/others/plugins.js"></script>
+<!-- Active JS -->
+<script src="../resources/common/js/active.js"></script>
+
 <body>
+
+<script type="text/javascript">
+$(document).ready(function(){   
+   $('#sido').change(function(){
+      //alert($('#sido').val()+" 선택됨");
+      $.ajax({
+         url : '${pageContext.request.contextPath}/lodge/gugun.do',
+         type : "get",
+         data : {
+            sido : $('#sido option:selected').val()
+         },
+         dataType : "json",
+         contentType : "text/html;charset:utf-8;",
+         success : function(d){
+            //alert(d);
+            var optionStr = "";
+            optionStr += "<option value=''>";
+            optionStr += "구/군";
+            optionStr += "</option>";
+            $.each(d, function(index, data){
+               optionStr += '<option value="'+data+'">';
+               optionStr += data;
+               optionStr += '</option>';
+            });
+            
+            $('#gugun').html(optionStr);
+         },
+         error:function(request,status,error){
+               //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+               console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+           }
+      });
+   });
+   $('#gugun').change(function(){
+      
+      var s = $('#sido option:selected').val();
+      var guu = $('#gugun').val();
+      $('#guu').val(guu);
+      //alert("선택한 시도:"+s+",구군:"+g);
+   });
+});
+
+</script>
 
     <!-- ***** Welcome Area Start ***** -->
     <section class="dorne-welcome-area bg-img bg-overlay" style="background-image: url(../resources/common/img/bg-img/mainbg.jpg);">
@@ -24,55 +78,42 @@
                         <div class="tab-content" id="nav-tabContent">
                             <div style="background-color:rgba(255,255,255,0.2); border-radius:1em;" class="tab-pane fade show active" id="nav-places" role="tabpanel" aria-labelledby="nav-places-tab">
 
-                                <form action="#" method="get">
-                                    <select class="custom-select" style="background-color:rgba(255,255,255,0.7); border-radius:1em;">
+                                <form name="searchFrm" onsubmit="return searchCheck(this);" action="../lodge/searchLodgeList.do">
+                                    <select class="custom-select" name="mode" id="mode" style="background-color:rgba(255,255,255,0.7); border-radius:1em; width:25%;">
                                         <option selected >숙박유형</option>
-                                        <option value="1">모텔</option>
-                                        <option value="2">호텔</option>
-                                        <option value="3">펜션</option>
-                                        <option value="4">게스트하우스</option>
+                                        <option value="모텔">모텔</option>
+                                        <option value="호텔/리조트">호텔/리조트</option>
+                                        <option value="펜션/풀빌라">펜션/풀빌라</option>
+                                        <option value="게스트하우스">게스트하우스</option>
                                     </select>
-                                    <select class="custom-select" style="background-color:rgba(255,255,255,0.7); border-radius:1em;">
-                                        <option selected>체크인</option>
-                                        <option value="1">Catagories 1</option>
-                                        <option value="2">Catagories 2</option>
-                                        <option value="3">Catagories 3</option>
-                                    </select>
-                                    <select class="custom-select" style="background-color:rgba(255,255,255,0.7); border-radius:1em;">
-                                        <option selected>체크아웃</option>
-                                        <option value="1">$100 - $499</option>
-                                        <option value="2">$500 - $999</option>
-                                        <option value="3">$1000 - $4999</option>
-                                    </select>
+                                    <select class="custom-select" id="sido" name="sido" style="background-color:rgba(255,255,255,0.7); border-radius:1em; width:25%;">
+      <option value="">시/도</option>
+      <option value="서울">서울특별시</option>
+      <option value="부산">부산광역시</option>
+      <option value="대구">대구광역시</option>
+      <option value="인천">인천광역시</option>
+      <option value="광주">광주광역시</option>
+      <option value="대전">대전광역시</option>
+      <option value="울산">울산광역시</option>
+      <option value="세종">세종특별자치시</option>
+      <option value="경기">경기도</option>
+      <option value="강원">강원도</option>
+      <option value="충청북도">충청북도</option>
+      <option value="충청남도">충청남도</option>
+      <option value="전라북도">전라북도</option>
+      <option value="전라남도">전라남도</option>
+      <option value="경상북도">경상북도</option>
+      <option value="경상남도">경상남도</option>
+      <option value="제주특별자치도">제주특별자치도</option>
+   </select>
+   <!-- 시/도 선택시 구/군 선택 --> 
+   <select name="gugun" id="gugun" title="시군구선택" class="custom-select" style="background-color:rgba(255,255,255,0.7); border-radius:1em; width:25%;" >
+      <option value="">구/군</option>
+   </select>
                                     <button type="submit" class="btn dorne-btn" style="background-color:#ff3479; border-radius:1em;"><i class="fa fa-search pr-2" aria-hidden="true"></i>숙소검색</button>
                                 </form>
                             </div>
-                            <div class="tab-pane fade" id="nav-events" role="tabpanel" aria-labelledby="nav-events-tab">
-                                <h6>What are you looking for?</h6>
-                                <form action="#" method="get">
-                                    <select class="custom-select">
-                                        <option selected>Your Destinations</option>
-                                        <option value="1">New York</option>
-                                        <option value="2">Latvia</option>
-                                        <option value="3">Dhaka</option>
-                                        <option value="4">Melbourne</option>
-                                        <option value="5">London</option>
-                                    </select>
-                                    <select class="custom-select">
-                                        <option selected>All Catagories</option>
-                                        <option value="1">Catagories 1</option>
-                                        <option value="2">Catagories 2</option>
-                                        <option value="3">Catagories 3</option>
-                                    </select>
-                                    <select class="custom-select">
-                                        <option selected>Price Range</option>
-                                        <option value="1">$100 - $499</option>
-                                        <option value="2">$500 - $999</option>
-                                        <option value="3">$1000 - $4999</option>
-                                    </select>
-                                    <button type="submit" class="btn dorne-btn"><i class="fa fa-search pr-2" aria-hidden="true"></i> Search</button>
-                                </form>
-                            </div>
+                           
                         </div>
                     </div>
                 </div>
@@ -165,16 +206,7 @@
 
 	<%@include file="/resources/include/yagajaBottom.jsp" %>
 
-    <!-- jQuery-2.2.4 js -->
-    <script src="../resources/common/js/jquery/jquery-2.2.4.min.js"></script>
-    <!-- Popper js -->
-    <script src="../resources/common/js/bootstrap/popper.min.js"></script>
-    <!-- Bootstrap-4 js -->
-    <script src="../resources/common/js/bootstrap/bootstrap.min.js"></script>
-    <!-- All Plugins js -->
-    <script src="../resources/common/js/others/plugins.js"></script>
-    <!-- Active JS -->
-    <script src="../resources/common/js/active.js"></script>
+    
 </body>
 
 </html>

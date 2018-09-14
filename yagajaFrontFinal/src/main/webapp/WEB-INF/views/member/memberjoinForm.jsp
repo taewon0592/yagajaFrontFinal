@@ -14,86 +14,104 @@
 	href="../resources/yanoljaCSS/member.css" />
 <script src="../resources/common/js/jquery/jquery-2.2.4.min.js"></script>
 <script>
+	function mValidate(fn){
+		if(fn.id.value==""){
+			alert("아이디를 입력해주세요");
+			fn.id.focus();
+			return false;
+		}
+		if(fn.email_1.value==""){
+			alert("이메일을 입력해주세요");
+			fn.email_1.focus();
+			return false;
+		}
+		if(fn.email_2.value==""){
+			alert("이메일을 선택해주세요");
+			fn.email_2.focus();
+			return false;
+		}
+		
+		if(fn.nickname.value==""){
+			alert("닉네임을 입력해주세요");
+			fn.nickname.focus();
+			return false;
+		}
+		/* if(fn.phone_1.value==""){
+			alert("휴대번호를 입력해주세요");
+			fn.phone_1.focus();
+			return false;
+		}
+		
+		if(fn.phone_2.value==""){
+			alert("휴대번호를 입력해주세요");
+			fn.phone_2.focus();
+			return false;
+		}
+		
+		if(fn.phone_3.value==""){
+			alert("휴대번호를 입력해주세요");
+			fn.phone_3.focus();
+			return false;
+		} */
+		
+		if(fn.nickname.value==""){
+			alert("닉네임을 입력해주세요");
+			fn.nickname.focus();
+			return false;
+		}
+		if(fn.pass.value==""){
+			alert("비밀번호를 입력해주세요");
+			fn.pass.focus();
+			return false;
+		}
+		if(fn.passcheck.value==""){
+			alert("비밀번호확인을 입력해주세요");
+			fn.passcheck.focus();
+			return false;
+		}
+		
+		
+	}
 
-function mValidate(fn){
-	if(fn.id.value==""){
-		alert("아이디를 입력해주세요");
-		fn.id.focus();
-		return false;
+	function email_input(em, frm){
+	   //선택한 select의 값이 빈값이 아닐때만 동작
+	   if(em.value!=""){
+	      if(em.value=="1"){
+	         //직접입력 선택한 경우
+	         //readonly속성 해제
+	         frm.email_2.readOnly = false;
+	         //도메인부분 비워주기
+	         frm.email_2.value = "";
+	      }
+	      else{
+	         //도메인을 선택한 경우
+	         //선택한 도메인을 입력한다.
+	         frm.email_2.value = em.value;
+	         //readonly속성을 활성화한다.
+	         frm.email_2.readOnly = true;
+	      }
+	   }
 	}
-	if(fn.email_1.value==""){
-		alert("이메일을 입력해주세요");
-		fn.email_1.focus();
-		return false;
-	}
-	if(fn.email_2.value==""){
-		alert("이메일을 선택해주세요");
-		fn.email_2.focus();
-		return false;
-	}
+	function checkPwd(){
+		var pass = $("#pass").val();
+		var passCheck = $("#passcheck").val();
+		//빈값일때
+		if(passCheck== ""){
+			document.getElementById("checkPwd").innerHTML=""
+		}
+		//일치하지않을때
+		else if(pass!=passCheck){
+			document.getElementById("checkPwd").innerHTML="<font><b>비밀번호가 일치하지 않습니다.</b></font>";
+			//버튼을 비활성화시킴
+			$("#btnToJoinEnd").prop("disabled",true);
+		}
+		//일치할때
+		else{
+			document.getElementById("checkPwd").innerHTML="<font color='#FD1E63'><b>비밀번호가 일치합니다.</b></font>"
+			$("#btnToJoinEnd").prop("disabled",false);
+		}
 	
-	if(fn.nickname.value==""){
-		alert("닉네임을 입력해주세요");
-		fn.nickname.focus();
-		return false;
 	}
-	/* if(fn.phone_1.value==""){
-		alert("휴대번호를 입력해주세요");
-		fn.phone_1.focus();
-		return false;
-	}
-	
-	if(fn.phone_2.value==""){
-		alert("휴대번호를 입력해주세요");
-		fn.phone_2.focus();
-		return false;
-	}
-	
-	if(fn.phone_3.value==""){
-		alert("휴대번호를 입력해주세요");
-		fn.phone_3.focus();
-		return false;
-	} */
-	
-	if(fn.nickname.value==""){
-		alert("닉네임을 입력해주세요");
-		fn.nickname.focus();
-		return false;
-	}
-	if(fn.pass.value==""){
-		alert("비밀번호를 입력해주세요");
-		fn.pass.focus();
-		return false;
-	}
-	if(fn.passcheck.value==""){
-		alert("비밀번호확인을 입력해주세요");
-		fn.passcheck.focus();
-		return false;
-	}
-	
-	
-}
-
-function email_input(em, frm){
-   //선택한 select의 값이 빈값이 아닐때만 동작
-   if(em.value!=""){
-      if(em.value=="1"){
-         //직접입력 선택한 경우
-         //readonly속성 해제
-         frm.email_2.readOnly = false;
-         //도메인부분 비워주기
-         frm.email_2.value = "";
-      }
-      else{
-         //도메인을 선택한 경우
-         //선택한 도메인을 입력한다.
-         frm.email_2.value = em.value;
-         //readonly속성을 활성화한다.
-         frm.email_2.readOnly = true;
-      }
-   }
-   
-}
 
 //아이디 체크여부 확인 (아이디 중복일 경우 = 0, 중복이 아닐 경우 1로 변경)
 var idck = 0;
@@ -135,9 +153,13 @@ $(function(){
 	});
 	 $("#btnToJoinEnd").click(function(){
 		 if(idck==0){
-			 alert("아이디 중복을 확인해주세요!");
+			 alert("아이디 중복을 확인해주세요");
 			 return false;
 		 }
+		 else{ 
+			 alert("회원가입이 완료되었습니다. 로그인해주세요!");
+		 }
+			
 	 });
 });
 </script>
@@ -173,7 +195,7 @@ $(function(){
 											onChange="email_input(this,this.form);" class="pass"
 											id="last_email_check2">
 											<option selected="" value="">선택</option>
-											<option value="google.com">google.com</option>
+											<option value="gmail.com">gmail.com</option>
 											<option value="hanmail.net">hanmail.net</option>
 											<option value="hotmail.com">hotmail.com</option>
 											<option value="nate.com">nate.com</option>
@@ -203,9 +225,10 @@ $(function(){
 									<div class="warning-txt msg_passwd" id="pwTextArea"></div>
 
 									<div class="inp-txt-member">
-										<input type="password" id="passcheck" name="passcheck"
-											class="inp-password" placeholder="비밀번호 확인" />
+
+										<input type="password" id="passcheck" name="passcheck" onkeyup="checkPwd()" class="inp-password" placeholder="비밀번호 확인" />
 									</div>
+										<div id="checkPwd"></div>
 									<div class="warning-txt msg_passwdConfirm" id="cpTextArea"></div>
 								</div>
 

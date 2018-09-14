@@ -2,7 +2,7 @@
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" 
-	uri="http://java.sun.com/jsp/jstl/fmt" %>
+   uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <%@include file="/resources/include/yagajaTop.jsp"%>
@@ -76,8 +76,6 @@ $( function() {
    if(month >=9 ){month = "0"+month;}
    var prettyDate = d.getFullYear()+'-'+month +'-'+d.getDate();
    var prettyNextDate = d.getFullYear()+'-'+month +'-'+(d.getDate()+1);
-   $('#ch_in').val(prettyDate);
-   $('#ch_out').val(prettyNextDate);
    
 });
 </script>
@@ -95,41 +93,81 @@ function plusOneDay(iDate)
    var d = choiceDay.getDate();
    
    f.ch_out.value = y+"-0"+m+"-"+d;
-}
 
-$(function(){
-	$.ajax({
-		url : '../reser/dateformat.do',
-		dateType : "json",
-		type : 'get',
-		contentType : "text/html;charset:utf-8",
-		data:
-		{
-			nowDay : $('#ch_in').val()	
-		},
-		success : function(d) 
-		{
-			alert("성공:"+d.day);
-			if(((d.day).equals('금')) or ((d.day).equals('토')))
-			{
-				$('#pay_price').html("<fmt:formatNumber value='${vo.w_sleep_price }' groupingUsed='true'/>point");
-				$('#m_price').html("<fmt:formatNumber value='${vo.w_sleep_price*0.05 }' groupingUsed='true'/>point");
-			}
-			else
-			{
-				$('#pay_price').html("<fmt:formatNumber value='${vo.d_sleep_price }' groupingUsed='true'/>point");
-				$('#m_price').html("<fmt:formatNumber value='${vo.d_sleep_price*0.05 }' groupingUsed='true'/>point");	
-			}
-		},
-		error : function(e)
-		{
-			alert("실패"+e.status);
-		}
-	});
-});
-	
-	
+
+   $.ajax({
+      url : '../reser/dateformat.do',
+      dateType : "json",
+      type : 'get',
+      contentType : "text/html; charset:utf-8",
+      data:
+      {
+         nowDay : $('#ch_in').val()   
+      },
+      success : function(d)  
+      {
+         var obj = JSON.parse(d)
+         
+         //alert("성공:"+obj.dayResult);
+         
+         if(obj.dayResult=="금" || obj.dayResult=="토")
+         {
+            <c:choose>
+               <c:when test="${type eq 'rent'}">
+                  $('#pay_price').html("<b><fmt:formatNumber value='${vo.w_rent_price }' groupingUsed='true'/>원</b>");
+                  $('#m_point').html("<b><fmt:formatNumber value='${vo.w_rent_price*0.05 }' groupingUsed='true'/>point</b>");
+                  $('#payment_price_sub').val(${vo.w_rent_price});
+                  $('#m_point_sub').val(${vo.w_rent_price*0.05});
+               </c:when>
+               <c:otherwise>
+                  $('#pay_price').html("<b><fmt:formatNumber value='${vo.w_sleep_price }' groupingUsed='true'/>원</b>");
+                  $('#m_point').html("<b><fmt:formatNumber value='${vo.w_sleep_price*0.05 }' groupingUsed='true'/>point</b>");
+                  $('#payment_price_sub').val(${vo.w_sleep_price});
+                  $('#m_point_sub').val(${vo.w_sleep_price*0.05});
+               </c:otherwise>
+            </c:choose>
+         }
+         else
+         {
+            <c:choose>
+               <c:when test="${type eq 'rent'}">
+                  $('#pay_price').html("<b><fmt:formatNumber value='${vo.d_rent_price }' groupingUsed='true'/>원</b>");
+                  $('#m_point').html("<b><fmt:formatNumber value='${vo.d_rent_price*0.05 }' groupingUsed='true'/>point</b>");
+                  $('#payment_price_sub').val(${vo.d_rent_price});
+                  $('#m_point_sub').val(${vo.d_rent_price*0.05});
+               </c:when>
+               <c:otherwise>
+                  $('#pay_price').html("<b><fmt:formatNumber value='${vo.d_sleep_price }' groupingUsed='true'/>원</b>");
+                  $('#m_point').html("<b><fmt:formatNumber value='${vo.d_sleep_price*0.05 }' groupingUsed='true'/>point</b>");
+                  $('#payment_price_sub').val(${vo.d_sleep_price});
+                  $('#m_point_sub').val(${vo.d_sleep_price*0.05});
+               </c:otherwise>
+            </c:choose>
+         }
+         
+      },
+      error : function(e)
+      {
+         alert("실패"+e.status);
+      }
+   });
 }  
+</script>
+<script>
+function confrm(f)
+{
+   var con = confirm("${vo.lodge_name}의 호텔을 정말로 예약하시겠습니까?");
+   
+   if(con==true)
+   {
+      return true;
+   }
+   else
+   {
+      alert("취소되었습니다.");
+      return false;
+   }
+}
 </script>
 
 
@@ -163,41 +201,41 @@ $(function(){
                         </div>
                   
                   <c:choose>
-					<c:when test="${type eq 'rent' }" >
-		                  <!-- 대실예약 -->
-		                  <div class="row">
-		                     <div class="col-8 col-lg-8">
-		                        <span style="font-size:25px; color:red; font-weight:bold;">주말</span>
-		                        <span style="font-size:25px; font-weight:bold;">/주중</span>
-		                        <span style="font-size:25px; font-weight:bold; padding-left:10px; padding-right:10px;">대실</span>
-		                        <span style="background-color:rgb(255,52,121); color:white;">예약가능</span>
-		                        <span style="background-color:rgb(255,52,121); color:white;">예약불가</span>
-		                     </div>
-		                     <div class="col-4 col-lg-4" style="text-align:right; margin-top:5px;">
-		                        <span style="text-align:right; font-size:20px; padding-top:10px; color:red;"><fmt:formatNumber value="${vo.w_rent_price }" groupingUsed="true"/>원</span>
-		                        <span style="text-align:right; font-size:20px; padding-top:10px;">&nbsp;/&nbsp;<fmt:formatNumber value="${vo.d_rent_price }" groupingUsed="true"/>원</span>
-		                     </div>                      
-		                  </div>
-		                  <hr />
-		                  <br/>
-	                  </c:when> 
-	                  <c:otherwise>
-		                  <!-- 숙박예약 -->
-		                  <div class="row" >
-		                     <div class="col-8 col-lg-8">
-		                     	<span style="font-size:25px; color:red; font-weight:bold;">주말</span>
-		                        <span style="font-size:25px; font-weight:bold;">/주중</span>
-		                        <span style="font-size:25px; font-weight:bold; padding-left:10px; padding-right:10px;">숙박</span>
-		                        <span style="background-color:rgb(255,52,121); color:white;">예약가능</span>
-		                        <span style="background-color:rgb(255,52,121); color:white;">예약불가</span>
-		                     </div>
-		                     <div class="col-4 col-lg-4" style="text-align:right; margin-top:5px;">
-		                        <span style="text-align:right; font-size:20px; padding-top:10px; color:red;"><fmt:formatNumber value="${vo.w_sleep_price }" groupingUsed="true"/>원</span>
-		                        <span style="text-align:right; font-size:20px; padding-top:10px;">&nbsp;/&nbsp;<fmt:formatNumber value="${vo.d_sleep_price }" groupingUsed="true"/>원</span>
-		                     </div>                      
-		                  </div>
-		                  <hr />
-	                  </c:otherwise>
+               <c:when test="${type eq 'rent' }" >
+                        <!-- 대실예약 -->
+                        <div class="row">
+                           <div class="col-8 col-lg-8">
+                              <span style="font-size:25px; color:red; font-weight:bold;">주말</span>
+                              <span style="font-size:25px; font-weight:bold;">/주중</span>
+                              <span style="font-size:25px; font-weight:bold; padding-left:10px; padding-right:10px;">대실</span>
+                              <span style="background-color:rgb(255,52,121); color:white;">예약가능</span>
+                              <!-- <span style="background-color:rgb(255,52,121); color:white;">예약불가</span> -->
+                           </div>
+                           <div class="col-4 col-lg-4" style="text-align:right; margin-top:5px;">
+                              <span style="text-align:right; font-size:20px; font-weight:bold; padding-top:10px; color:red;"><b><fmt:formatNumber value="${vo.w_rent_price }" groupingUsed="true"/>원</b></span>
+                              <span style="text-align:right; font-size:20px; font-weight:bold; padding-top:10px;">&nbsp;/&nbsp;<b><fmt:formatNumber value="${vo.d_rent_price }" groupingUsed="true"/>원</b></span>
+                           </div>                      
+                        </div>
+                        <hr />
+                        <br/>
+                     </c:when> 
+                     <c:otherwise>
+                        <!-- 숙박예약 -->
+                        <div class="row" >
+                           <div class="col-8 col-lg-8">
+                              <span style="font-size:25px; color:red; font-weight:bold;">주말</span>
+                              <span style="font-size:25px; font-weight:bold;">/주중</span>
+                              <span style="font-size:25px; font-weight:bold; padding-left:10px; padding-right:10px;">숙박</span>
+                              <span style="background-color:rgb(255,52,121); color:white;">예약가능</span>
+                              <!-- <span style="background-color:rgb(255,52,121); color:white;">예약불가</span> -->
+                           </div>
+                           <div class="col-4 col-lg-4" style="text-align:right; margin-top:5px;">
+                              <span style="text-align:right; font-size:20px; padding-top:10px; color:red;"><b><fmt:formatNumber value="${vo.w_sleep_price }" groupingUsed="true"/>원</b></span>
+                              <span style="text-align:right; font-size:20px; padding-top:10px;">&nbsp;/&nbsp;<b><fmt:formatNumber value="${vo.d_sleep_price }" groupingUsed="true"/>원</b></span>
+                           </div>                      
+                        </div>
+                        <hr />
+                     </c:otherwise>
                   </c:choose>
                    
                         <div class="single-listing-nav">
@@ -212,40 +250,40 @@ $(function(){
 
                         <div class="overview-content mt-50" id="overview">
                   <h5>필수입력사항</h5>
-                  	<form action="../reser/reservationProc.do" name="dayFrm">
-                  	<input type="hid-den" value="${vo.room_no }" name="room_no" />
-                  	<input type="hid-den" value="${vo.lodge_no }" name="lodge_no" />
-                  	<input type="hid-den" value="${sessionScope.siteUserInfo.member_no }" name="member_no" />
-                  	<input type="hid-den" value="${sessionScope.siteUserInfo.m_point }" name="prev_m_point"/>
-                  	
-	                       <div class="row mt-4" style="vertical-align:middle;">
-	                       <span style="font-size:12px; padding-left:20px; vertical-align:middle; margin-top:5px;">
-	                          예약자명
-	                       </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	                       <input type="text" id="reser_name" name="reser_name" style="width:150px; border-right:black 0px solid; border-left:black 0px solid; border-top:black 0px solid; border-bottom:black 1px solid;"> &nbsp;&nbsp;
-	                       <span style="font-size:12px; padding-left:15px; margin-top:5px;">
-	                          <span style="color:red; font-weight:bold; font-size:14px;" >※</span>예약자명은 실명으로 기입해주세요.
-	                       </span>
-	                           </div>
-	                    <div class="row mt-4">
-	                       <span style="font-size:12px; padding-left:20px; vertical-align:middle; margin-top:4px;">
-	                          방문형태
-	                       </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	                       <label><input type="radio" id="visit_type" name="visit_type" value="차량" style="margin-top:-1px; vertical-align:middle; margin-right:3px;" ><b>차량</b></label> &nbsp;&nbsp;
-	                       <label><input type="radio" id="visit_type" name="visit_type" value="도보"><b>도보</b></label> &nbsp;&nbsp;
-	                       <span style="font-size:12px; padding-left:15px; margin-top:4px;">
-	                          <span style="color:red; font-weight:bold; font-size:14px;">※</span>주차장 이용을 안내해 드립니다.
-	                       </span>
-	                    </div>
-	                    <hr/>
-	                    <h6 style="padding-top:20px;">결제 선택</h6>
-	                    <div class="row mt-3" style="margin-left:5px;">
-	                       <label><input type="radio" id="payment_type" name="payment_type" value="card" style="mrgin-top:1px; vertical-align:middle; margin-right:3px;" ><b style="font-size:12px;">&nbsp;카드결제</b></label> &nbsp;&nbsp;&nbsp;&nbsp;
-	                       <label><input type="radio" id="payment_type" name="payment_type" value="naverpay" style="margin-top:1px; vertical-align:middle; margin-right:3px;"><b style="font-size:12px;">&nbsp;네이버페이</b></label> &nbsp;&nbsp;&nbsp;&nbsp;
-	                       <label><input type="radio" id="payment_type" name="payment_type" value="m_point" style="margin-top:1px; vertical-align:middle; margin-right:3px;"><b style="font-size:12px;">&nbsp;마일리지</b></label> &nbsp;&nbsp;
-	                           </div>
-	                       </div>
-	                 	<hr/>
+                     <form action="../reser/reservationProc.do" name="dayFrm" onsubmit="return confrm(this);" id="dayFrm">
+                     <input type="hidden" value="${vo.room_no }" name="room_no" />
+                     <input type="hidden" value="${vo.lodge_no }" name="lodge_no" />
+                     <input type="hidden" value="${sessionScope.siteUserInfo.member_no }" name="member_no" />
+                     <input type="hidden" value="${sessionScope.siteUserInfo.m_point }" name="prev_m_point"/>
+                     
+                          <div class="row mt-4" style="vertical-align:middle;">
+                          <span style="font-size:12px; padding-left:20px; vertical-align:middle; margin-top:5px;">
+                             예약자명
+                          </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <input type="text" id="reser_name" name="reser_name" style="width:150px; border-right:black 0px solid; border-left:black 0px solid; border-top:black 0px solid; border-bottom:black 1px solid;"> &nbsp;&nbsp;
+                          <span style="font-size:12px; padding-left:15px; margin-top:5px;">
+                             <span style="color:red; font-weight:bold; font-size:14px;" >※</span>예약자명은 실명으로 기입해주세요.
+                          </span>
+                              </div>
+                       <div class="row mt-4">
+                          <span style="font-size:12px; padding-left:20px; vertical-align:middle; margin-top:4px;">
+                             방문형태
+                          </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <label><input type="radio" id="visit_type" name="visit_type" value="차량" style="margin-top:-1px; vertical-align:middle; margin-right:3px;" ><b>차량</b></label> &nbsp;&nbsp;
+                          <label><input type="radio" id="visit_type" name="visit_type" value="도보"><b>도보</b></label> &nbsp;&nbsp;
+                          <span style="font-size:12px; padding-left:15px; margin-top:4px;">
+                             <span style="color:red; font-weight:bold; font-size:14px;">※</span>주차장 이용을 안내해 드립니다.
+                          </span>
+                       </div>
+                       <hr/>
+                       <h6 style="padding-top:20px;">결제 선택</h6>
+                       <div class="row mt-3" style="margin-left:5px;">
+                          <label><input type="radio" id="payment_type" name="payment_type" value="card" style="mrgin-top:1px; vertical-align:middle; margin-right:3px;" ><b style="font-size:12px;">&nbsp;카드결제</b></label> &nbsp;&nbsp;&nbsp;&nbsp;
+                          <label><input type="radio" id="payment_type" name="payment_type" value="naverpay" style="margin-top:1px; vertical-align:middle; margin-right:3px;"><b style="font-size:12px;">&nbsp;네이버페이</b></label> &nbsp;&nbsp;&nbsp;&nbsp;
+                          <label><input type="radio" id="payment_type" name="payment_type" value="m_point" style="margin-top:1px; vertical-align:middle; margin-right:3px;"><b style="font-size:12px;">&nbsp;마일리지</b></label> &nbsp;&nbsp;
+                              </div>
+                          </div>
+                       <hr/>
                   
 
                         <div class="listing-menu-area mt-50" id="menu">
@@ -357,28 +395,55 @@ $(function(){
                                  <div class="col-7 col-lg-7" style="color:white; font-size:12px;">
                                     적립 포인트 :
                                  </div>
-                                 <div class="col-5 col-lg-5" style="color:white; font-size:12px; padding-right:10px;" id="m_point">
-                                    <fmt:formatNumber value="${vo.d_sleep_price*0.05 }" groupingUsed="true"/>point
-                                 </div>
-                                 <input type="hidden" name="m_point" value="${vo.d_sleep_price*0.05 }" />    
-                              </div>
-                              <div style="color:white; font-size:10px; padding-top:10px;">
-                                 ※결제 금액이 1만원 미만 또는 당일예약일 <br />
-                                  &nbsp;&nbsp; 경우 포인트가 적립되지 않습니다. <br />
-                                 ※포인트는 로그인 후 결제할 경우에 <br /> 
-                                 &nbsp;&nbsp;적립됩니다.
-                              </div>
-                              <hr style="border:solid 1px white;"/>
-                              <div class="row">
-                              <input type="hid den" id="dayDate" name="dayDate" value="${day }" />
-                                 <div class="col-6 col-lg-6" style="color:black; font-size:16px;">
-                                    <b>결제 금액 :</b>
-                                 </div>
-                                 <div class="col-6 col-lg-6" style="color:black; font-size:14px;" id="pay_price">
-                                    <b><fmt:formatNumber value="${vo.d_sleep_price }" groupingUsed="true"/>원</b>
-                                    <input type="hidden" name="payment_price" value="${vo.d_sleep_price }" />
-                                 </div>    
-                              </div>
+                                 <c:choose>
+                                    <c:when test="${type eq 'rent' }">
+                                         <div class="col-5 col-lg-5" style="color:white; font-size:12px; padding-right:10px;" id="m_point">
+                                             <fmt:formatNumber value="${vo.d_rent_price*0.05 }" groupingUsed="true"/>point
+                                          </div>
+                                          <input type="hidden" name="m_point" id="m_point_sub" value="${vo.d_rent_price*0.05 }" />    
+                                       </div>
+                                       <div style="color:white; font-size:10px; padding-top:10px;">
+                                          ※결제 금액이 1만원 미만 또는 당일예약일 <br />
+                                           &nbsp;&nbsp; 경우 포인트가 적립되지 않습니다. <br />
+                                          ※포인트는 로그인 후 결제할 경우에 <br /> 
+                                          &nbsp;&nbsp;적립됩니다.
+                                       </div>
+                                       <hr style="border:solid 1px white;"/>
+                                       <div class="row">
+                                          <div class="col-6 col-lg-6" style="color:black; font-size:16px;">
+                                             <b>결제 금액 :</b>
+                                          </div>
+                                          <div class="col-6 col-lg-6" style="color:black; font-size:14px;" id="pay_price">
+                                             <b><fmt:formatNumber value="${vo.d_rent_price }" groupingUsed="true"/>원</b>
+                                          </div>
+                                          <input type="hidden" name="payment_price" id="payment_price_sub" value="${vo.d_rent_price }" />    
+                                       </div>
+                                    </c:when>
+                                    <c:otherwise>
+                                          <div class="col-5 col-lg-5" style="color:white; font-size:12px; padding-right:10px;" id="m_point">
+                                             <b><fmt:formatNumber value="${vo.d_sleep_price*0.05 }" groupingUsed="true"/>point</b>
+                                          </div>
+                                          <input type="hidden" name="m_point" id="m_point_sub" value="${vo.d_sleep_price*0.05 }" />    
+                                       </div>
+                                       <div style="color:white; font-size:10px; padding-top:10px;">
+                                          ※결제 금액이 1만원 미만 또는 당일예약일 <br />
+                                           &nbsp;&nbsp; 경우 포인트가 적립되지 않습니다. <br />
+                                          ※포인트는 로그인 후 결제할 경우에 <br /> 
+                                          &nbsp;&nbsp;적립됩니다.
+                                       </div>
+                                       <hr style="border:solid 1px white;"/>
+                                       <div class="row">
+                                          <div class="col-6 col-lg-6" style="color:black; font-size:16px;">
+                                             <b>결제 금액 :</b>
+                                          </div>
+                                          <div class="col-6 col-lg-6" style="color:black; font-size:14px;" id="pay_price">
+                                             <b><fmt:formatNumber value="${vo.d_sleep_price }" groupingUsed="true"/>원</b>
+                                          </div>
+                                          <input type="hidden" name="payment_price" id="payment_price_sub" value="${vo.d_sleep_price }" />    
+                                       </div>
+                                    </c:otherwise>
+                                 </c:choose>
+                               
               
                                 <button type="submit" class="btn dorne-btn bg-white text-dark" style="margin-top:30px;">결제하기</button>
                             </form>

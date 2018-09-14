@@ -59,7 +59,7 @@
                         <div style="background-color:white;" class="collapse navbar-collapse" id="dorneNav">
                             <ul class="navbar-nav mr-auto" id="dorneMenu">
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="../main/list.jsp" style="color:black;">지역 <span class="sr-only">(current)</span></a>
+                                    <a class="nav-link" href="../main/list.do" style="color:black;">지역 <span class="sr-only">(current)</span></a>
                                 </li>
                                 
                                 <li class="nav-item dropdown">
@@ -70,16 +70,21 @@
                                 </li>
                             </ul>
                             <div class="dorne-signin-btn"> 
-                                <a style="color:black;" href="#">공지사항</a>
+                                <a style="color:black;" href="../notice/noticeList.do">공지사항</a>
                             </div>
                             <c:choose>
                             	<c:when test="${not empty sessionScope.siteUserInfo }">
+                            		<!-- 채팅 -->
+		                            <div class="dorne-signin-btn">
+		                                <a style="color:black;" href="../chatting.do?member_no=${sessionScope.siteUserInfo.member_no }&id=${sessionScope.siteUserInfo.id }" 
+		                                	onClick="window.open(this.href, '', 'width=400, height=500'); return false;">실시간채팅</a>
+		                            </div>
                             		<div class="dorne-signin-btn">
-		                              	  <a style="color:black;" href="#">예약내역</a>
+		                              	  <a style="color:black;" href="../reser/reserveList.do?member_no=${sessionScope.siteUserInfo.member_no }">예약내역</a>
 		                            </div>
 		                            <!-- 마이페이지 -->
 		                            <div class="dorne-signin-btn">
-		                                <a style="color:black;" href="../member/mypageinfo.do?member_no=${sessionScope.siteUserInfo.member_no }&id=${sessionScope.siteUserInfo.id }">마이페이지</a>
+		                                <a style="color:black;" href="../member/passcheck.do?member_no=${sessionScope.siteUserInfo.member_no }&id=${sessionScope.siteUserInfo.id }">마이페이지</a>
 		                            </div>
 		                            <!-- 로그인 -->
 		                            <div class="dorne-add-listings-btn" >
@@ -88,6 +93,24 @@
 		                                </a>
 		                            </div>
 		                 		</c:when>
+		                 		
+		                 		<c:when test="${param.code != null }">
+		                 			<!-- 네이버 로그인일때 나오는 화면-->
+		                 			<div class="dorne-signin-btn">
+		                              	  <a style="color:black;" href="../reser/reserveList.do?member_no=${sessionScope.siteUserInfo.member_no }">예약내역</a>
+		                            </div>
+		                            <!-- 마이페이지 -->
+		                            <div class="dorne-signin-btn">
+		                                <a style="color:black;" href="../member/passcheck.do?member_no=${sessionScope.siteUserInfo.member_no }&id=${sessionScope.siteUserInfo.id }">마이페이지</a>
+		                            </div>
+		                            <!-- 로그인 -->
+		                            <div class="dorne-add-listings-btn" >
+		                                <a href="../member/logout.do" class="btn dorne-btn" style="background-color:#ff3479; border-radius:1em;">
+			                               	 로그아웃
+		                                </a>
+		                            </div>
+		                 		</c:when>
+		                 		
                             	<c:otherwise>
 		                            <!-- Signin btn -->
 		                            <div class="dorne-signin-btn">
@@ -99,6 +122,7 @@
 		                            </div>
                             	</c:otherwise>
                           </c:choose>
+                          
                         </div>
                     </nav>
                 </div>

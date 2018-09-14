@@ -29,8 +29,6 @@
 </script>
 
 <body>
-
-  
 	<div class="container-comm">
 		<div class="contents">
 			<div class="member-content">
@@ -51,7 +49,7 @@
 									<input type="password" id="pass" name="pass" placeholder="비밀번호" title="비밀번호 입력" />
 								</div>	
 								<span style="font-size: 0.8em; color: #ff3479;">${PassNG }</span>
-								<div class="col-12 ">
+								<!-- <div class="col-12 ">
 								<label class="custom-control custom-checkbox mb-3"> 
 									<input type="checkbox" class="custom-control-input" id="id_save" name="useCookie"> 
 										<span class="custom-control-indicator"></span> 
@@ -59,15 +57,15 @@
 											아이디저장
 									</span>
 								</label>
-								</div>
+								</div> -->
 									
 								<button type="submit" name="button" class="btn-gradation btn-login" id="login" >로그인</button>
 								
 								<p>
 									아이디/비밀번호를 잊으셨나요? <br /> 
-									<a href="/member/find?pageType=id"   class="link-txt" title="아이디찾기">아이디찾기</a>
+									<a href="../member/find_id.do"   class="link-txt" title="아이디찾기">아이디찾기</a>
 									<span></span>
-         			 				<a href="/member/find?pageType=pw"  class="link-txt" title="비밀번호찾기">비밀번호찾기</a>
+         			 				<a href="../member/find_pass.do"  class="link-txt" title="비밀번호찾기">비밀번호찾기</a>
 								</p>
 							</div>
 

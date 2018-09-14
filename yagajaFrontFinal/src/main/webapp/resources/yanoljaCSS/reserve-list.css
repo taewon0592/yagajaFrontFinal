@@ -1,0 +1,756 @@
+@font-face {
+	font-family: Nanum Barun Gothic;
+	src: url(../fonts/NanumBarunGothic.eot?#iefix) format("embedded-opentype"), url(../fonts/NanumBarunGothic.woff) format("woff"), url(../fonts/NanumBarunGothic.ttf) format("truetype");
+	font-weight: 400;
+	font-style: normal;
+}
+@font-face {
+	font-family: Nanum Barun Gothic;
+	src: url(../fonts/NanumBarunGothicBold.eot?#iefix) format("embedded-opentype"), url(../fonts/NanumBarunGothicBold.woff) format("woff"), url(../fonts/NanumBarunGothicBold.ttf) format("truetype");
+	font-weight: 700;
+	font-style: normal;
+}
+body {
+	margin: 0px; padding: 0px;
+}
+div {
+	margin: 0px; padding: 0px;
+}
+dl {
+	margin: 0px; padding: 0px;
+}
+dt {
+	margin: 0px; padding: 0px;
+}
+dd {
+	margin: 0px; padding: 0px;
+}
+ul {
+	margin: 0px; padding: 0px;
+}
+ol {
+	margin: 0px; padding: 0px;
+}
+li {
+	margin: 0px; padding: 0px;
+}
+h1 {
+	margin: 0px; padding: 0px;
+}
+h2 {
+	margin: 0px; padding: 0px;
+}
+h3 {
+	margin: 0px; padding: 0px;
+}
+h4 {
+	margin: 0px; padding: 0px;
+}
+h5 {
+	margin: 0px; padding: 0px;
+}
+h6 {
+	margin: 0px; padding: 0px;
+}
+pre {
+	margin: 0px; padding: 0px;
+}
+code {
+	margin: 0px; padding: 0px;
+}
+form {
+	margin: 0px; padding: 0px;
+}
+fieldset {
+	margin: 0px; padding: 0px;
+}
+legend {
+	margin: 0px; padding: 0px;
+}
+textarea {
+	margin: 0px; padding: 0px;
+}
+p {
+	margin: 0px; padding: 0px;
+}
+blockquote {
+	margin: 0px; padding: 0px;
+}
+th {
+	margin: 0px; padding: 0px;
+}
+td {
+	margin: 0px; padding: 0px;
+}
+input {
+	margin: 0px; padding: 0px;
+}
+select {
+	margin: 0px; padding: 0px;
+}
+textarea {
+	margin: 0px; padding: 0px;
+}
+button {
+	margin: 0px; padding: 0px;
+}
+body {
+	color: rgb(102, 102, 102); font-family: "Apple SD Gothic Neo", "Nanum Barun Gothic", sans-serif !important; font-size: 16px; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: none; -webkit-tap-highlight-color: transparent;
+}
+h1 {
+	color: rgb(102, 102, 102); font-family: "Apple SD Gothic Neo", "Nanum Barun Gothic", sans-serif !important; font-size: 16px; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: none; -webkit-tap-highlight-color: transparent;
+}
+h2 {
+	color: rgb(102, 102, 102); font-family: "Apple SD Gothic Neo", "Nanum Barun Gothic", sans-serif !important; font-size: 16px; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: none; -webkit-tap-highlight-color: transparent;
+}
+h3 {
+	color: rgb(102, 102, 102); font-family: "Apple SD Gothic Neo", "Nanum Barun Gothic", sans-serif !important; font-size: 16px; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: none; -webkit-tap-highlight-color: transparent;
+}
+h4 {
+	color: rgb(102, 102, 102); font-family: "Apple SD Gothic Neo", "Nanum Barun Gothic", sans-serif !important; font-size: 16px; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: none; -webkit-tap-highlight-color: transparent;
+}
+h5 {
+	color: rgb(102, 102, 102); font-family: "Apple SD Gothic Neo", "Nanum Barun Gothic", sans-serif !important; font-size: 16px; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: none; -webkit-tap-highlight-color: transparent;
+}
+h6 {
+	color: rgb(102, 102, 102); font-family: "Apple SD Gothic Neo", "Nanum Barun Gothic", sans-serif !important; font-size: 16px; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: none; -webkit-tap-highlight-color: transparent;
+}
+input {
+	color: rgb(102, 102, 102); font-family: "Apple SD Gothic Neo", "Nanum Barun Gothic", sans-serif !important; font-size: 16px; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: none; -webkit-tap-highlight-color: transparent;
+}
+textarea {
+	color: rgb(102, 102, 102); font-family: "Apple SD Gothic Neo", "Nanum Barun Gothic", sans-serif !important; font-size: 16px; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: none; -webkit-tap-highlight-color: transparent;
+}
+select {
+	color: rgb(102, 102, 102); font-family: "Apple SD Gothic Neo", "Nanum Barun Gothic", sans-serif !important; font-size: 16px; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: none; -webkit-tap-highlight-color: transparent;
+}
+button {
+	color: rgb(102, 102, 102); font-family: "Apple SD Gothic Neo", "Nanum Barun Gothic", sans-serif !important; font-size: 16px; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: none; -webkit-tap-highlight-color: transparent;
+}
+table {
+	color: rgb(102, 102, 102); font-family: "Apple SD Gothic Neo", "Nanum Barun Gothic", sans-serif !important; font-size: 16px; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: none; -webkit-tap-highlight-color: transparent;
+}
+body {
+	position: relative; -ms-word-break: break-all; -ms-text-size-adjust: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none;
+}
+img {
+	border: 0px currentColor; border-image: none;
+}
+fieldset {
+	border: 0px currentColor; border-image: none;
+}
+iframe {
+	border: 0px currentColor; border-image: none;
+}
+dl {
+	list-style: none;
+}
+ul {
+	list-style: none;
+}
+ol {
+	list-style: none;
+}
+menu {
+	list-style: none;
+}
+li {
+	list-style: none;
+}
+input {
+	padding: 0px; border: 0px currentColor; border-image: none;
+}
+input {
+	vertical-align: middle; -webkit-appearance: none; -moz-appearance: none; appearance: none;
+}
+select {
+	vertical-align: middle; -webkit-appearance: none; -moz-appearance: none; appearance: none;
+}
+button {
+	vertical-align: middle; -webkit-appearance: none; -moz-appearance: none; appearance: none;
+}
+label {
+	vertical-align: middle; -webkit-appearance: none; -moz-appearance: none; appearance: none;
+}
+img {
+	border: 0px currentColor; border-image: none; vertical-align: top;
+}
+select {
+	background: none; border-radius: 0px; -webkit-border-radius: 0px; -webkit-appearance: none; -moz-appearance: none; appearance: none;
+}
+i {
+	font-style: normal;
+}
+em {
+	font-style: normal;
+}
+address {
+	font-style: normal;
+}
+label {
+	text-decoration: none; cursor: pointer;
+}
+button {
+	text-decoration: none; cursor: pointer;
+}
+a {
+	text-decoration: none; cursor: pointer;
+}
+hr {
+	display: none;
+}
+table {
+	width: 100%; border-collapse: collapse; border-spacing: 0;
+}
+table caption {
+	margin: 0px; padding: 0px;
+}
+textarea {
+	overflow: auto; resize: none;
+}
+button {
+	font-family: "Apple SD Gothic Neo", "Nanum Barun Gothic", sans-serif !important;
+}
+input {
+	font-family: "Apple SD Gothic Neo", "Nanum Barun Gothic", sans-serif !important;
+}
+textarea {
+	font-family: "Apple SD Gothic Neo", "Nanum Barun Gothic", sans-serif !important;
+}
+select {
+	font-family: "Apple SD Gothic Neo", "Nanum Barun Gothic", sans-serif !important;
+}
+td {
+	font-family: "Apple SD Gothic Neo", "Nanum Barun Gothic", sans-serif !important;
+}
+th {
+	font-family: "Apple SD Gothic Neo", "Nanum Barun Gothic", sans-serif !important;
+}
+button {
+	border: 0px currentColor; border-image: none; cursor: pointer; background-color: transparent;
+}
+a {
+	color: rgb(102, 102, 102); text-decoration: none; cursor: pointer;
+}
+a:link {
+	color: rgb(102, 102, 102);
+}
+a:visited {
+	color: rgb(102, 102, 102);
+}
+a:hover {
+	color: rgb(255, 45, 96);
+}
+a:active {
+	color: rgb(255, 45, 96);
+}
+a:focus {
+	color: rgb(255, 45, 96);
+}
+article {
+	margin: 0px; padding: 0px; display: block;
+}
+aside {
+	margin: 0px; padding: 0px; display: block;
+}
+details {
+	margin: 0px; padding: 0px; display: block;
+}
+figcaption {
+	margin: 0px; padding: 0px; display: block;
+}
+figure {
+	margin: 0px; padding: 0px; display: block;
+}
+footer {
+	margin: 0px; padding: 0px; display: block;
+}
+header {
+	margin: 0px; padding: 0px; display: block;
+}
+hgroup {
+	margin: 0px; padding: 0px; display: block;
+}
+menu {
+	margin: 0px; padding: 0px; display: block;
+}
+nav {
+	margin: 0px; padding: 0px; display: block;
+}
+section {
+	margin: 0px; padding: 0px; display: block;
+}
+main {
+	margin: 0px; padding: 0px; display: block;
+}
+.skip_navigation {
+	left: 0px; top: 0px; width: 100%; text-align: center; display: block; position: relative; z-index: 1000;
+}
+.skip_navigation a {
+	margin: 0px 0px -1px; left: 0px; top: -1px; width: 100%; height: 1px; color: rgb(255, 255, 255); line-height: 30px; overflow: hidden; font-size: 13px; font-weight: bold; display: block; position: absolute;
+}
+.skip_navigation a:focus {
+	padding: 3px; height: auto; background-color: black;
+}
+.skip_navigation a:active {
+	padding: 3px; height: auto; background-color: black;
+}
+.sc-out {
+	left: -9999px; width: 1px; height: 1px; line-height: 0; text-indent: -9999px; overflow: hidden; font-size: 0px; position: absolute;
+}
+.show {
+	display: block;
+}
+.hide {
+	display: none;
+}
+.f-left {
+	float: left;
+}
+.f-right {
+	float: right;
+}
+.clearfix::after {
+	clear: both; display: table; content: "";
+}
+h1 {
+	font-weight: normal;
+}
+h2 {
+	font-weight: normal;
+}
+h3 {
+	font-weight: normal;
+}
+h4 {
+	font-weight: normal;
+}
+h5 {
+	font-weight: normal;
+}
+.title-section {
+	color: rgb(51, 51, 51); font-size: 18px; margin-bottom: 15px;
+}
+.title-section em {
+	font-weight: bold;
+}
+.txt-more {
+	color: rgb(136, 136, 136); font-size: 14px;
+}
+.txt-tipcheck {
+	color: rgb(170, 170, 170); font-size: 14px;
+}
+.txt-underline {
+	text-decoration: line-through;
+}
+a.link-txt {
+	color: rgb(255, 45, 96); font-size: 15px; border-bottom-color: rgb(255, 45, 96); border-bottom-width: 1px; border-bottom-style: solid;
+}
+a.link-txt:hover {
+	border-color: rgb(255, 45, 96);
+}
+.warning-txt {
+	margin: 10px 0px 20px; color: rgb(255, 45, 96); font-size: 12px;
+}
+.color-pink {
+	color: rgb(255, 45, 96);
+}
+.color-dark {
+	color: rgb(51, 51, 51);
+}
+.color-darkred {
+	color: rgb(255, 37, 89);
+}
+.color-orange {
+	color: rgb(243, 123, 72);
+}
+.color-mint {
+	color: rgb(24, 208, 197);
+}
+.color-gradation {
+	background: rgb(255, 73, 61); color: white; -webkit--background: linear-gradient(top, #ff493d 0%, #ff1069 100%);
+}
+:-ms-input-placeholder {
+	color: rgb(170, 170, 170);
+}
+.inp-checkbox input {
+	border: 1px solid rgb(204, 204, 204); border-image: none; width: 18px; height: 18px; margin-right: 5px;
+}
+.inp-checkbox input[type='checkbox']:checked {
+	background: url("../../images/pc/member/bg-checkbox-on.png") no-repeat 0px 0px; border-color: rgb(255, 45, 96); vertical-align: middle;
+}
+.inp-checkbox label {
+	color: rgb(51, 51, 51); font-size: 15px; vertical-align: middle;
+}
+a.btn-gradation {
+	background: rgb(255, 73, 61); padding: 20px 0px 19px; width: 100%; text-align: center; color: rgb(255, 255, 255) !important; font-size: 18px; display: block; -webkit--background: linear-gradient(top, #ff493d 0%, #ff1069 100%);
+}
+a.btn-gradation:link {
+	background: rgb(255, 73, 61); padding: 20px 0px 19px; width: 100%; text-align: center; color: rgb(255, 255, 255) !important; font-size: 18px; display: block; -webkit--background: linear-gradient(top, #ff493d 0%, #ff1069 100%);
+}
+a.btn-gradation:hover {
+	background: rgb(255, 73, 61); padding: 20px 0px 19px; width: 100%; text-align: center; color: rgb(255, 255, 255) !important; font-size: 18px; display: block; -webkit--background: linear-gradient(top, #ff493d 0%, #ff1069 100%);
+}
+.btn-gradation {
+	background: rgb(255, 73, 61); padding: 20px 0px 19px; width: 100%; text-align: center; color: rgb(255, 255, 255) !important; font-size: 18px; display: block; -webkit--background: linear-gradient(top, #ff493d 0%, #ff1069 100%);
+}
+.btn-primary {
+	padding: 17px 0px; border: 1px solid rgb(255, 45, 96); border-image: none; width: 100%; text-align: center; color: rgb(255, 45, 96); font-size: 16px !important;
+}
+.btn-default {
+	padding: 17px 0px !important; border: 1px solid rgb(89, 95, 99) !important; border-image: none !important; width: 100%; text-align: center; color: rgb(89, 95, 99) !important; font-size: 16px !important;
+}
+.btn-default.on {
+	border-color: rgb(255, 45, 96); color: rgb(255, 45, 96);
+}
+.btn-default2 {
+	background: rgb(89, 95, 99); padding: 17px 0px; border: 1px solid rgb(89, 95, 99); border-image: none; width: 100%; text-align: center; color: rgb(255, 255, 255); font-size: 16px;
+}
+.pc-header {
+	padding: 0px 30px; top: 0px; width: 100%; border-bottom-color: rgb(221, 221, 221); border-bottom-width: 1px; border-bottom-style: solid; position: fixed; z-index: 9; box-sizing: border-box; background-color: rgb(255, 255, 255);
+}
+.pc-header .gnb-area {
+	padding: 18px 0px; height: 26px; position: relative;
+}
+.pc-header .gnb-area::after {
+	clear: both; display: table; content: "";
+}
+.pc-header .site-logo {
+	width: 92px; height: 26px; margin-right: 54px;
+}
+.pc-header .gnb {
+	vertical-align: middle; display: inline-block; -ms-zoom: 1;
+}
+.pc-header .site-logo {
+	vertical-align: middle; display: inline-block; -ms-zoom: 1;
+}
+.pc-header .gnb::after {
+	clear: both; display: table; content: "";
+}
+.pc-header .gnb li {
+	margin-left: 40px; float: left;
+}
+.pc-header .gnb li:first-child {
+	margin-left: 0px;
+}
+.pc-header .gnb li.on a {
+	color: rgb(255, 45, 96);
+}
+#footer {
+	border-top-color: rgb(238, 238, 238); border-top-width: 1px; border-top-style: solid;
+}
+#footer > div {
+	margin: 0px auto; padding: 20px; width: 940px; position: relative;
+}
+#footer .link_area {
+	margin-bottom: 30px;
+}
+#footer .link_area li {
+	font-size: 14px; float: left;
+}
+#footer .link_area li .bar {
+	margin: 0px 10px;
+}
+#footer .link_area li a {
+	color: rgb(102, 102, 102);
+}
+#footer .link_area li a:hover {
+	color: rgb(255, 52, 120);
+}
+#footer .yanolja_info {
+	color: rgb(170, 170, 170); margin-bottom: 10px;
+}
+#footer .yanolja_info .bar {
+	margin: 0px 8px;
+}
+#footer .copyright {
+	color: rgb(170, 170, 170);
+}
+#footer .select {
+	top: 24px; width: 102px; height: 34px; right: 0px; margin-right: 4px; position: absolute;
+}
+#footer .select .choice_select {
+	background: url("http://image2.yanolja.com/100/pc/stay/board.png") no-repeat -435px -701px; padding: 8px 0px 0px 9px; top: 0px; width: 144px; height: 28px; right: 0px; display: inline-block; position: absolute; z-index: 10;
+}
+#footer .select ul {
+	background: rgb(255, 255, 255); padding: 3px 0px; border: 1px solid rgb(221, 221, 221); border-image: none; top: -208px; width: 151px; right: 0px; position: absolute;
+}
+#footer .select li a {
+	padding: 5px 11px; display: block;
+}
+#footer .txt_info {
+	text-align: left; color: rgb(136, 136, 136); padding-bottom: 20px; font-size: 12px;
+}
+.t-center {
+	text-align: center;
+}
+.contents {
+	margin: 0px auto; padding: 60px 0px; max-width: 980px;
+}
+.reserve-content {
+	margin-top: 60px;
+}
+.article-title {
+	width: 100%; color: rgb(68, 68, 68); font-size: 48px;
+}
+.article-title span {
+	color: rgb(102, 102, 102); font-size: 14px; margin-left: 30px; vertical-align: middle; display: inline-block;
+}
+.history-list {
+	margin-top: 10px; position: relative;
+}
+.history-item {
+	padding: 40px 0px; border-top-color: rgb(229, 229, 229); border-top-width: 1px; border-top-style: solid; position: relative;
+}
+.history-item .info {
+	min-height: 200px;
+}
+.history-item .info h4 {
+	color: rgb(51, 51, 51); font-size: 24px;
+}
+.history-item .info h4 span {
+	color: rgb(68, 68, 68); font-size: 14px; vertical-align: middle;
+}
+.history-item .info .txt-address {
+	color: rgb(102, 102, 102); font-size: 14px; margin-top: 5px;
+}
+.reserveinfo-list {
+	margin-top: 30px;
+}
+.reserveinfo-item {
+	font-size: 14px; margin-top: 8px; position: relative;
+}
+:first-child.reserveinfo-item {
+	margin-top: 0px;
+}
+.reserveinfo-item span {
+	left: 0px; top: 0px; color: rgb(102, 102, 102); position: absolute; min-width: 75px;
+}
+.reserveinfo-item em {
+	margin-left: 75px; display: inline-block;
+}
+.reserveinfo-item b {
+	margin-left: 75px; display: inline-block;
+}
+.reserveinfo-item em {
+	color: rgb(255, 45, 96);
+}
+.reserveinfo-item b {
+	color: rgb(68, 68, 68); font-weight: normal;
+}
+.reserveinfo-item b.str {
+	font-weight: 600;
+}
+.history-item .btns {
+	right: 0px; bottom: 40px; font-size: 0px; position: absolute;
+}
+.history-item .btns button {
+	width: 160px; line-height: 1; margin-left: 10px;
+}
+.history-item .btns button:first-child {
+	margin-left: 0px;
+}
+.tags {
+	top: 40px; right: 0px; position: absolute;
+}
+.tags span {
+	padding: 7px 0px 3px; text-align: center; line-height: 1; display: inline-block;
+}
+.tag-primary {
+	height: 15px; color: rgb(255, 255, 255); font-size: 13px; min-width: 105px;
+}
+.tag-default {
+	height: 15px; color: rgb(255, 255, 255); font-size: 13px; min-width: 105px;
+}
+.tag-primary {
+	background: rgb(255, 45, 96);
+}
+.tag-default {
+	background: rgb(136, 136, 136);
+}
+.history-item.ready-reserve {
+	
+}
+.history-item.end-use {
+	color: rgb(136, 136, 136);
+}
+.history-item.end-use .info h4 {
+	color: rgb(136, 136, 136);
+}
+.history-item.end-use .info h4 span {
+	color: rgb(136, 136, 136);
+}
+.history-item.end-use .info .txt-address {
+	color: rgb(136, 136, 136);
+}
+.history-item.end-use .reserveinfo-item span {
+	color: rgb(136, 136, 136);
+}
+.history-item.end-use .reserveinfo-item em {
+	color: rgb(136, 136, 136);
+}
+.history-item.end-use .reserveinfo-item b {
+	color: rgb(136, 136, 136);
+}
+.layer-popup.on {
+	display: block;
+}
+.layer-popup {
+	background: rgba(0, 0, 0, 0.7); left: 0px; top: 0px; width: 100%; height: 100%; display: none; position: absolute; z-index: 1001;
+}
+.layer-container {
+	background: rgb(255, 255, 255); left: 50%; top: 120px; width: 500px; height: auto; margin-left: -250px; border-bottom-color: rgb(221, 221, 221); border-bottom-width: 1px; border-bottom-style: solid; position: relative;
+}
+.layer-contents h3 {
+	background: rgb(242, 242, 242); padding: 10px 0px 9px; text-align: center; color: rgb(68, 68, 68); font-size: 20px; border-bottom-color: rgb(221, 221, 221); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.layer-contents .content {
+	padding: 30px 50px 40px;
+}
+.layer-contents .content2 {
+	padding: 15px;
+}
+.btn-layer-close {
+	background: url("http://image2.yanolja.com/100/pc/stay/web2.0/btn-layer-close.png") no-repeat 0px 0px; top: -33px; width: 30px; height: 30px; right: -33px; position: absolute;
+}
+.payment-area {
+	margin: 0px auto; max-width: 540px;
+}
+.reserve-cancel-area {
+	margin: 0px auto; max-width: 540px;
+}
+.lookup-area {
+	margin: 0px auto; max-width: 540px;
+}
+.reserve-number-txt {
+	text-align: center; font-size: 18px; margin-bottom: 10px;
+}
+.reserve-number-txt b {
+	color: rgb(51, 51, 51);
+}
+.reserve-number-txt strong {
+	color: rgb(255, 45, 96);
+}
+.reserveinfo-box {
+	padding: 10px 20px; color: white; margin-top: 30px; background-color: rgb(89, 95, 99);
+}
+.reserveinfo-box .reserveinfo-item {
+	color: rgb(255, 255, 255);
+}
+.reserveinfo-box .reserveinfo-item span {
+	color: rgb(255, 255, 255);
+}
+.reserveinfo-box .reserveinfo-item em {
+	color: rgb(255, 255, 255);
+}
+.reserveinfo-box .reserveinfo-item b {
+	color: rgb(255, 255, 255);
+}
+.reserveinfo-box :first-child.reserveinfo-list {
+	border-top-color: currentColor; border-top-width: 0px; border-top-style: none;
+}
+.reserveinfo-box .reserveinfo-item.total span {
+	color: rgb(247, 118, 121);
+}
+.reserveinfo-box .reserveinfo-item.total b {
+	color: rgb(247, 118, 121);
+}
+.reserveinfo-box .reserveinfo-item.total em {
+	color: rgb(247, 118, 121);
+}
+.reserveinfo-box .reserveinfo-list {
+	padding: 15px 0px; margin-top: 0px; border-top-color: rgb(129, 133, 136); border-top-width: 1px; border-top-style: solid;
+}
+.reserveinfo-box .reserveinfo-item {
+	height: 20px;
+}
+.reserveinfo-box .reserveinfo-item span {
+	font-size: 15px;
+}
+.reserveinfo-box .reserveinfo-item em {
+	font-size: 16px;
+}
+.reserveinfo-box .reserveinfo-item b {
+	font-size: 16px;
+}
+.reserveinfo-box .tip-txt {
+	color: rgb(204, 204, 204);
+}
+.reserveinfo-box .inp-checkbox {
+	margin-top: 30px;
+}
+.guide-table {
+	margin: 20px 0px;
+}
+.guide-table th {
+	padding: 9px 5px; font-size: 15px;
+}
+.guide-table td {
+	padding: 9px 5px; font-size: 15px;
+}
+.guide-table th {
+	border: 1px solid rgb(89, 95, 99); border-image: none; color: white; font-weight: normal; background-color: rgb(89, 95, 99);
+}
+.guide-table th:first-child {
+	background: url("http://image2.yanolja.com/100/pc/stay/web2.0/bar-table-head.png") no-repeat right rgb(89, 95, 99);
+}
+.guide-table td {
+	border: 1px solid rgb(204, 204, 204); border-image: none; text-align: center; color: rgb(51, 51, 51);
+}
+.guide-txt {
+	margin: 20px 0px; text-align: center; color: rgb(170, 170, 170); font-size: 14px;
+}
+.btn-rap.col2 {
+	height: 60px;
+}
+.btn-rap.col2 button {
+	width: 265px; float: left;
+}
+.btn-rap.col2 button:first-child {
+	margin-right: 10px;
+}
+.reserve-list-inp {
+	margin-top: 45px;
+}
+:first-child.reserve-list-inp {
+	margin-top: 0px;
+}
+.reserve-list-inp label {
+	padding: 0px 10px; color: rgb(136, 136, 136); font-size: 16px;
+}
+.reserve-list-inp div {
+	padding: 10px; border-bottom-color: rgb(221, 221, 221); border-bottom-width: 1px; border-bottom-style: solid; position: relative;
+}
+.reserve-list-inp .type-phone input {
+	width: 300px;
+}
+.reserve-list-inp .btn-phonenumber {
+	padding: 6px 0px; border-radius: 17px; border: 1px solid rgb(255, 45, 96); border-image: none; right: 0px; bottom: 10px; color: rgb(255, 45, 96); font-size: 14px; position: absolute; min-width: 120px;
+}
+.reserve-list-inp input {
+	width: 100%; color: rgb(51, 51, 51); font-size: 18px;
+}
+.reserve-list-inp input:-ms-input-placeholder {
+	color: rgb(51, 51, 51);
+}
+.btn-nomember-reserve {
+	margin-top: 40px;
+}
+.desc-login {
+	margin-top: 40px;
+}
+.noresult-container {
+	width: 100%; height: 480px; text-align: center; position: relative;
+}
+.noresult-content {
+	left: 0px; top: 50%; width: 100%; margin-top: -104px; position: absolute;
+}
+.noresult-content .noresult-rap {
+	padding: 31px 0px; border-radius: 68px; width: 136px; height: 74px; text-align: center; margin-bottom: 30px; display: inline-block; background-color: rgb(229, 229, 229); -moz-border-radius: 68px; -webkit-border-radius: 68px; -khtml-border-radius: 68px;
+}
+.noresult-content p {
+	font-size: 15px;
+}
+.noresult-content img {
+	width: 68px; height: 68px;
+}

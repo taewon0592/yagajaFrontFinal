@@ -17,6 +17,9 @@ public class YagajaAuctionDTO
 		private int auction_unit;
 		private String auction_check_in;
 		private String auction_check_out;
+	//옥션테이블 시작, 종료가 변환
+		private String auction_stime_ch;
+		private String auction_etime_ch;
 		//호텔이름
 		
 		//룸가격
@@ -32,10 +35,12 @@ public class YagajaAuctionDTO
 		//lodge추가
 		private String lodge_name;
 		private String lodge_type;
+		private String lodge_feature;
 		private String lodge_photo;
-		//room추가ㅊ
+		//room추가
 		private String room_type;
 		private String room_no;
+		private String room_photo;
 		
 		//기본생성자
 		public YagajaAuctionDTO() 
@@ -196,26 +201,6 @@ public class YagajaAuctionDTO
 			this.auction_unit = auction_unit;
 		}
 
-		public String getAuction_check_in() 
-		{
-			return auction_check_in;
-		}
-
-		public void setAuction_check_in(String auction_check_in) 
-		{
-			this.auction_check_in = auction_check_in;
-		}
-
-		public String getAuction_check_out() 
-		{
-			return auction_check_out;
-		}
-
-		public void setAuction_check_out(String auction_check_out) 
-		{
-			this.auction_check_out = auction_check_out;
-		}
-
 		public String getLodge_name() 
 		{
 			return lodge_name;
@@ -331,6 +316,57 @@ public class YagajaAuctionDTO
 		public void setRoom_no(String room_no) {
 			this.room_no = room_no;
 		}
+
+		public String getLodge_feature() {
+			return lodge_feature;
+		}
+
+		public void setLodge_feature(String lodge_feature) {
+			this.lodge_feature = lodge_feature;
+		}
+
+		public String getAuction_check_in() {
+			return auction_check_in;
+		}
+
+		public void setAuction_check_in(String auction_check_in) {
+			this.auction_check_in = auction_check_in;
+		}
+
+		public String getAuction_check_out() {
+			return auction_check_out;
+		}
+
+		public void setAuction_check_out(String auction_check_out) {
+			this.auction_check_out = auction_check_out;
+		}
+
+		public String getAuction_stime_ch() {
+			return auction_stime_ch;
+		}
+
+		public void setAuction_stime_ch(String auction_stime_ch) {
+			this.auction_stime_ch = auction_stime_ch;
+		}
+
+		public String getAuction_etime_ch() {
+			return auction_etime_ch;
+		}
+
+		public void setAuction_etime_ch(String auction_etime_ch) {
+			this.auction_etime_ch = auction_etime_ch;
+		}
+
+		public String getRoom_photo() {
+			return room_photo;
+		}
+
+		public void setRoom_photo(String room_photo) {
+			this.room_photo = room_photo;
+		}
+		
+		
+		
 	
 	
 }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="notice.YagajaNoticeImpl">
+	<select id="list" resultType="notice.NoticeVO">
+		SELECT * FROM notice order by notice_no DESC
+	</select>
+
+	<select id="getTotalCount" resultType="int">
+		SELECT COUNT(*) FROM notice
+	</select>
+	
+	<select id="listPage" resultType="notice.NoticeVO">
+		 SELECT * FROM ( 
+			SELECT Tb.*, rownum rNum FROM ( 
+				SELECT * FROM notice
+				  ORDER BY notice_no DESC
+				 	) Tb
+				 ) 
+				 WHERE rNum BETWEEN #{param1} AND #{param2}
+	</select>
+	
+	<select id="view" resultType="notice.NoticeVO">
+		SELECT * FROM notice where notice_no=#{param1}
+	</select>
+
+
+</mapper>

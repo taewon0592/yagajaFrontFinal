@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="lodge.SearchYagajaLodgeImpl">
+	<!-- AJAX로 시/도/구/군 가져오기 -->
+	<select id="gugun" resultType="String">
+	   SELECT DISTINCT gugun FROM zipcode  WHERE sido=#{0} ORDER BY gugun
+	</select>
+
+	<select id="getTotalCount2" resultType="int">
+		select count(*) from (
+		select distinct l.lodge_no, l.lodge_name, l.lodge_type, ad.addr_common, ad.addr_detail, r.d_sleep_price
+		from lodge l inner join room r on l.lodge_no=r.lodge_no
+		inner join lodge_addr ad on l.lodge_no=ad.lodge_no
+		where 
+		(l.lodge_no ,  r.d_sleep_price) 
+		in (
+		select l.lodge_no, min(r.d_sleep_price)
+		from lodge l inner join room r on l.lodge_no=r.lodge_no
+		inner join lodge_addr ad on l.lodge_no=ad.lodge_no
+		where l.lodge_type like '%'||#{0}||'%' and ad.addr_common like '%'||#{1}||'%' and r.d_sleep_price>0
+		group by l.lodge_no
+		))
+	</select>
+	
+	<select id="searchListPage" resultType="lodge.SearchLodgeDTO" parameterType="lodge.SearchParamListVO">
+		SELECT * FROM 
+		(
+  		SELECT Tb.*, rownum rNum FROM 
+  		(
+   		select distinct l.*, ad.addr_common, ad.addr_detail, ad.addr_lat, ad.addr_long, r.d_sleep_price, r.w_sleep_price, r.d_rent_price, r.w_rent_price
+		from lodge l inner join room r on l.lodge_no=r.lodge_no
+		inner join lodge_addr ad on l.lodge_no=ad.lodge_no
+		where 
+		(l.lodge_no ,  r.d_sleep_price) 
+		in (
+        select l.lodge_no, min(r.d_sleep_price)
+		from lodge l inner join room r on l.lodge_no=r.lodge_no
+ 		inner join lodge_addr ad on l.lodge_no=ad.lodge_no
+   		where 
+   		<choose>
+      				
+			<when test="mode != null and mode.equals('모텔')">
+			l.lodge_type like '%'||#{mode}||'%'
+			</when>
+			
+			<when test="mode != null and mode.equals('호텔/리조트')">
+			l.lodge_type like '%'||#{mode}||'%'
+			</when>
+			
+			<when test="mode != null and mode.equals('펜션/풀빌라')">
+			l.lodge_type like '%'||#{mode}||'%'
+			</when>
+			
+			<otherwise>
+			l.lodge_type like '게스트하우스'
+			</otherwise>
+												
+		</choose>
+  		and ad.addr_common like '%'||#{gugun}||'%' and r.d_sleep_price>0 group by l.lodge_no )        		
+  		) Tb
+		) 
+		WHERE 
+		rNum BETWEEN #{start} and #{end}  
+	</select>
+	
+</mapper>    

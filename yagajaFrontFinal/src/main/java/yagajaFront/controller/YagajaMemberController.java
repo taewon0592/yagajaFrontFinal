@@ -71,40 +71,12 @@ public class YagajaMemberController {
 		return "main/chatting";
 	}
 	
-	//핫딜페이지 확인
-   @RequestMapping("/hotdeal/hotdealList.do")
-   public String hotdealList(Model model, HttpServletRequest req) {
-      
-      int totalRecordCount = sqlSession.getMapper(HotdealImpl.class).getTotalCount();
-      
-      int pageSize = 6;
-      int blockPage = 10;
-      
-      int totalPage = (int) Math.ceil((double) totalRecordCount / pageSize);
-
-      int nowPage = req.getParameter("nowPage") == null ? 1 : Integer.parseInt(req.getParameter("nowPage"));
-      int start = (nowPage - 1) * pageSize + 1;
-      int end = nowPage * pageSize;
-      
-      ArrayList<HotdealDTO> lists = sqlSession.getMapper(HotdealImpl.class).hotdealList(start, end);
-
-      // 페이지 처리를 위한 처리부분
-      String pagingImg = PagingUtil.pagingImgServlet(totalRecordCount, pageSize, blockPage, nowPage,
-            req.getContextPath() + "/hotdeal/hotdealList.do?");
-      model.addAttribute("pagingImg", pagingImg);
-      
-      model.addAttribute("lists", lists);
-      return "hotdeal/hotdealList";
-   }
+	
    
    // 야가자 메인페이지
    @RequestMapping("/main/index.do")
    public String main(Model model, HttpServletRequest req, HttpSession session) {
-      //기존에 siteUserInfo 세션값이 존재하면
-      if(session.getAttribute("siteUserInfo")!=null) {
-         //기존값을 제거한다.
-         session.removeAttribute("siteUserInfo");
-      }
+    
       System.out.println("index() 메소드 호출됨");
       return "main/index";
    }
@@ -244,7 +216,7 @@ public class YagajaMemberController {
          
       } else {
          // 로그인 성공시
-          writer.println("<script type='text/javascript'>");
+         writer.println("<script type='text/javascript'>");
            writer.println("alert('"+req.getParameter("id")+"님 환영합니다');");
            writer.println("</script>");
            writer.flush();
@@ -265,9 +237,9 @@ public class YagajaMemberController {
    // 로그아웃
    @RequestMapping("/member/logout.do")
    public String logout(HttpSession session){
-      // 세션영역에 저장된 데이터를 지워준다
-      session.setAttribute("siteUserInfo", null);
-      
+	   
+     //기존값을 제거한다.
+     session.removeAttribute("siteUserInfo");
       return "redirect:login.do";
    }
    

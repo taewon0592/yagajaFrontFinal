@@ -255,6 +255,7 @@ function confrm(f)
                      <input type="hidden" value="${vo.lodge_no }" name="lodge_no" />
                      <input type="hidden" value="${sessionScope.siteUserInfo.member_no }" name="member_no" />
                      <input type="hidden" value="${sessionScope.siteUserInfo.m_point }" name="prev_m_point"/>
+                     <input type="hidden" value="${sessionScope.siteUserInfo.phone }" name="phone" />
                      
                           <div class="row mt-4" style="vertical-align:middle;">
                           <span style="font-size:12px; padding-left:20px; vertical-align:middle; margin-top:5px;">

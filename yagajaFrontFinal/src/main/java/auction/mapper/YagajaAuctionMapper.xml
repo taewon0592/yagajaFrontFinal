@@ -6,32 +6,51 @@
     
 <mapper namespace="auction.YagajaAuctionImpl">
 
-	<select id="getTotalCount" resultType="int">
-		select count(*) from auction where 1=1 and (auction_etime-sysdate) > 0
-	</select>
-	
-	<select id="auctionList" resultType="auction.YagajaAuctionDTO">
-		select * from 
-			(select Tb.*, trunc((auction_stime-sysdate)*24*60*60) AS remain_time_sec, 
-				trunc((auction_etime-sysdate)*24*60*60) AS start_remain_time_sec, 
-				to_char(check_in,'yyyy"년"mm"월"dd"일" hh24:mi:ss') as auction_check_in,
-				to_char(check_out,'yyyy"년"mm"월"dd"일" hh24:mi:ss') as auction_check_out, rownum rNum from 
-					(select * from 
-						auction A inner join lodge L on A.lodge_no=L.lodge_no
-								  inner join room R on A.room_no=R.room_no where (auction_etime-sysdate) > 0 order by auction_no desc ) Tb ) where rNum between #{param1} and #{param2}
-	</select>
-	
-	<select id="auctionView" resultType="auction.YagajaAuctionDTO">
-		select * from 
-			(select Tb.*, trunc((auction_stime-sysdate)*24*60*60) AS remain_time_sec,
-				trunc((auction_etime-sysdate)*24*60*60) AS start_remain_time_sec,
-				to_char(check_in,'yyyy"년"mm"월"dd"일" hh24:mi:ss') as auction_check_in,
-				to_char(check_out,'yyyy"년"mm"월"dd"일" hh24:mi:ss') as auction_check_out,
-				to_char(auction_stime,'yyyy"년"mm"월"dd"일" hh24:mi:ss') as auction_stime_ch,
-				to_char(auction_etime,'yyyy"년"mm"월"dd"일" hh24:mi:ss') as auction_etime_ch from
-					(select * from auction A inner join lodge L on A.lodge_no=L.lodge_no
-						inner join room R on A.room_no=R.room_no) Tb ) where auction_no = #{param4}
-	</select>
+   <select id="getTotalCount" resultType="int">
+      select count(*) from auction where 1=1 and (auction_etime-sysdate) > 0
+   </select>
+    
+   <select id="auctionList" resultType="auction.YagajaAuctionDTO">
+      select * from 
+         (select Tb.*, trunc((auction_stime-sysdate)*24*60*60) AS remain_time_sec, 
+            trunc((auction_etime-sysdate)*24*60*60) AS start_remain_time_sec, 
+            to_char(check_in,'yyyy"년"mm"월"dd"일" hh24:mi:ss') as auction_check_in,
+            to_char(check_out,'yyyy"년"mm"월"dd"일" hh24:mi:ss') as auction_check_out, rownum rNum from 
+               (select * from 
+                  auction A inner join lodge L on A.lodge_no=L.lodge_no
+                          inner join room R on A.room_no=R.room_no where (auction_etime-sysdate) > 0 order by auction_no desc ) Tb ) where rNum between #{param1} and #{param2}
+   </select>
+   
+   <select id="auctionView" resultType="auction.YagajaAuctionDTO">
+      select * from 
+         (select Tb.*, trunc((auction_stime-sysdate)*24*60*60) AS remain_time_sec,
+            trunc((auction_etime-sysdate)*24*60*60) AS start_remain_time_sec,
+            to_char(check_in,'yyyy"년"mm"월"dd"일" hh24:mi:ss') as auction_check_in,
+            to_char(check_out,'yyyy"년"mm"월"dd"일" hh24:mi:ss') as auction_check_out,
+            to_char(auction_stime,'yyyy"년"mm"월"dd"일" hh24:mi:ss') as auction_stime_ch,
+            to_char(auction_etime,'yyyy"년"mm"월"dd"일" hh24:mi:ss') as auction_etime_ch from
+               (select * from auction A inner join lodge L on A.lodge_no=L.lodge_no
+                  inner join room R on A.room_no=R.room_no) Tb ) where auction_no = #{param4}
+   </select>
+   
+   <update id="auctionUpdate">
+      update auction set end_price=#{param1}, final_bidder=#{param2}, member_no=#{param3} where auction_no=#{param4}
+   </update>
+   
+   <select id="auctionListgetTotalCount" resultType="int">
+      select count(*) from auction where member_no=#{param1}
+   </select>
+   
+   <select id="auctionReserList" resultType="auction.YagajaAuctionDTO">
+      select * from 
+         (select Tb.*, trunc((auction_stime-sysdate)*24*60*60) AS remain_time_sec, 
+            trunc((auction_etime-sysdate)*24*60*60) AS start_remain_time_sec, 
+            to_char(check_in,'yyyy"년"mm"월"dd"일" hh24:mi:ss') as auction_check_in,
+            to_char(check_out,'yyyy"년"mm"월"dd"일" hh24:mi:ss') as auction_check_out, rownum rNum from 
+               (select * from 
+                  auction A inner join lodge L on A.lodge_no=L.lodge_no
+                          inner join room R on A.room_no=R.room_no where member_no=#{param1} order by auction_no desc ) Tb ) where rNum between #{param2} and #{param3}
+   </select>
 
 
 </mapper>

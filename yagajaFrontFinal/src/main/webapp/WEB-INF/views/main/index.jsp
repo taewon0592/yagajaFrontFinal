@@ -150,7 +150,7 @@ $(document).ready(function(){
                                     <div class="catagory-content">
                                         <img src="../resources/common/img/core-img/hotel.png" alt="">
                                      	  
-                                            <h6 style="color:black;">호텔</h6>
+                                            <h6 style="color:black;">호텔/리조트</h6>
                                          
                                     </div>
                                     </a>
@@ -163,7 +163,7 @@ $(document).ready(function(){
                                     <div class="catagory-content">
                                         <img src="../resources/common/img/core-img/pension.png" alt="">
                                         
-                                            <h6 style="color:black;">펜션</h6>
+                                            <h6 style="color:black;">펜션/풀빌라</h6>
                                         
                                     </div>
                                     </a>

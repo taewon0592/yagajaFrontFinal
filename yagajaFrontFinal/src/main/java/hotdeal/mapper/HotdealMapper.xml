@@ -5,11 +5,50 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="hotdeal.HotdealImpl">
+
 	<select id="getTotalCount" resultType="int">
-   		SELECT count(*) from hotdeal 
+   		SELECT COUNT(*) FROM hotdeal where 1=1 AND (hotdeal_etime-sysdate) > 0 AND hotdeal_sell>0
    </select>
    
     <select id="hotdealList" resultType="hotdeal.HotdealDTO">
-   		SELECT * FROM (SELECT Tb.*, rownum rNum FROM (SELECT H.*, L.lodge_name,L.lodge_type, L.lodge_feature,R.room_type FROM hotdeal H INNER JOIN lodge L ON H.lodge_no=L.lodge_no INNER JOIN room R ON H.room_no = r.room_no WHERE 1=1 ORDER BY hotdeal_no DESC) Tb) WHERE rNum BETWEEN #{param1} and #{param2}
-   </select>
+		SELECT * FROM 
+			(SELECT Tb.*, trunc((hotdeal_stime-sysdate)*24*60*60) AS remain_time_sec, 
+				trunc((hotdeal_etime-sysdate)*24*60*60) AS start_remain_time_sec, 
+				to_char(hotdeal_sday,'yyyy"년"mm"월"dd"일"') AS hotdeal_check_in,
+				to_char(hotdeal_eday,'yyyy"년"mm"월"dd"일"') AS hotdeal_check_out, rownum rNum from 
+					(SELECT * FROM 
+						hotdeal A INNER JOIN lodge L on A.lodge_no=L.lodge_no
+								  INNER JOIN room R on A.room_no=R.room_no WHERE (hotdeal_etime-sysdate) > 0 AND hotdeal_sell>0 ORDER BY hotdeal_no desc ) Tb ) WHERE rNum BETWEEN #{param1} and #{param2}
+	</select>
+	
+	<select id="hotdealView" resultType="hotdeal.HotdealDTO">
+		select * from 
+			(select Tb.*, trunc((hotdeal_stime-sysdate)*24*60*60) AS remain_time_sec,
+				trunc((hotdeal_etime-sysdate)*24*60*60) AS start_remain_time_sec,
+				to_char(hotdeal_sday,'yyyy"년"mm"월"dd"일"') as hotdeal_check_in,
+				to_char(hotdeal_eday,'yyyy"년"mm"월"dd"일"') as hotdeal_check_out,
+				to_char(hotdeal_stime,'yyyy"년"mm"월"dd"일" hh24:mi:ss') as hotdeal_stime_ch,
+				to_char(hotdeal_etime,'yyyy"년"mm"월"dd"일" hh24:mi:ss') as hotdeal_etime_ch from
+					(select * from hotdeal A inner join lodge L on A.lodge_no=L.lodge_no
+						inner join room R on A.room_no=R.room_no) Tb ) where hotdeal_no = #{param4}
+	</select>
+	
+	<!--핫딜예약  -->
+	<insert id="insertHotdealReser" parameterType="reservation.ReservationVO">
+		insert into reservation (reser_no, reser_name, check_in, check_out, visit_type, payment_type, payment_price,hotdeal_no,lodge_no, member_no, room_no, reser_type)
+		values(reservation_no_seq.nextval, #{reser_name}, to_date(#{check_in},'yyyy-mm-dd hh24:mi:ss'), to_date(#{check_out},'yyyy-mm-dd hh24:mi:ss'), #{visit_type}, #{payment_type}, #{payment_price},#{hotdeal_no}, #{lodge_no}, #{member_no}, #{room_no}, #{reser_type} )
+	</insert>
+	
+	<!-- 핫딜로 예약이 완료되면 핫딜가격만큼 마일리지를 차감시킨다 -->
+	<update id="decreaseM_point">
+		update member set m_point=#{param1} where member_no=#{param2}
+	</update>
+	
+	<!-- 핫딜개수 차감  -->
+	<update id="hotdeal_Sell_Count">
+		update hotdeal set hotdeal_sell=#{param1}-1 where hotdeal_no=#{param2}
+	</update>
+	
+	
+	
 </mapper>

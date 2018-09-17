@@ -3,6 +3,7 @@ package yagajaFront.controller;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -19,9 +20,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import auction.YagajaAuctionDTO;
+import auction.YagajaAuctionImpl;
 import hotdeal.HotdealImpl;
 import reservation.ReservationImpl;
 import reservation.ReservationVO;
+import yagajaFront.model.PagingUtil;
+import yagajaFront.model.SMS;
+import yagajaFront.model.SMSForm;
 
 @Controller
 public class YagajaReservationController 
@@ -49,7 +55,7 @@ public class YagajaReservationController
    
    //예약하기 프로그램 
    @RequestMapping("/reser/reservationProc.do")
-   public String reservationProc(Model model, HttpServletRequest req, HttpServletResponse resp)
+   public String reservationProc(Model model, HttpServletRequest req)
    {   
       ReservationVO reserVO = new ReservationVO();
       String backAndGo = null;
@@ -60,6 +66,7 @@ public class YagajaReservationController
       String payment_type = req.getParameter("payment_type");
       String check_in = req.getParameter("check_in");
       String check_out = req.getParameter("check_out");
+      String phone = req.getParameter("phone");
       
       double m_point = Double.parseDouble(req.getParameter("m_point"));
       
@@ -93,11 +100,7 @@ public class YagajaReservationController
       
       if(sucOrFail == 1)
       {
-         backAndGo = "redirect:/reser/reserveList.do";
-      }
-      else 
-      {
-         backAndGo =  "location.href:history.go(-1)";
+         backAndGo = "redirect:/reser/reservationList.do?member_no="+member_no+"&phone="+phone;
       }
       
       return backAndGo;
@@ -171,12 +174,91 @@ public class YagajaReservationController
       return jsonObject.toString();
    }
    
-   //예약하기 프로그램 
-   @RequestMapping("/reser/reserveList.do")
-   public String reserveListpage(Model model, HttpServletRequest req)
-   {   
+   //예약내역!!
+   @RequestMapping("/reser/reservationList.do")
+   public String reserVationList(Model model, HttpServletRequest req, HttpServletResponse resp)
+   {
+	  SMS sms;
+	  
+      String member_no = req.getParameter("member_no");
+      String phone = req.getParameter("phone");
+      
+      //옥션의 전체 레코드수 가져오기
+      int totalRecordCount = sqlSession.getMapper(ReservationImpl.class).getTotalCount(member_no);
+      
+      System.out.println("totalRecordCount:"+totalRecordCount);
+      
+      //페이지 처리를 위한 설정값
+      int pageSize = 10;
+      int blockPage = 5;
+      
+      //전체 페이지 수 계산하기
+      int totalPage = (int)Math.ceil((double)totalRecordCount / pageSize);
+      
+      //시작 및 끝 rownum 구하기
+      int nowPage = req.getParameter("nowPage") == null ? 1 : Integer.parseInt(req.getParameter("nowPage"));
+      int start = (nowPage - 1)* pageSize +1;
+      int end = nowPage * pageSize;
+        
+      ArrayList<ReservationVO> lists = sqlSession.getMapper(ReservationImpl.class).reserVationList(start, end); 
+      
+      ReservationVO vo = sqlSession.getMapper(ReservationImpl.class).reserSms();
+      
+      try
+      {
+         SMSForm sf = new SMSForm();
+         
+         sms = new SMS(sf.SMSForm(req, resp, vo), phone, req, resp); 
+         sms.Send();
+        
+      }
+      catch(Exception e)
+      {
+         e.printStackTrace();
+      }
+      
+      String pagingImg = PagingUtil.pagingImgServlet(totalRecordCount, pageSize, blockPage, nowPage, req.getContextPath()+"/reser/reservationList.do?");
+      model.addAttribute("pagingImg", pagingImg);
+      
+      model.addAttribute("lists", lists);
+      
+      return "reser/reserVationList";
+   }
    
-	   return "reser/reserveList";
+   
+   
+   //결제취소하기
+   @RequestMapping("/reser/reservationCancle.do")
+   public void reserCancle(Model model, HttpServletRequest req, HttpServletResponse resp) throws IOException
+   {
+      req.setCharacterEncoding("UTF-8");
+      
+      resp.setContentType("text/html;charset=utf-8;");
+      
+      String reser_no = req.getParameter("reser_no");
+      String payment_price = req.getParameter("payment_price");
+      System.out.println("reser_no:"+reser_no);
+      System.out.println("payment_price:"+payment_price);
+
+      //검색어를 파라미터로 DAO호출후 JSON출력을 담당하는 메소드 호출
+      String resultJSON = getJSON2(reser_no, payment_price);
+      
+      System.out.println("resultJSON:"+resultJSON);
+      
+      //화면상에 출력
+      resp.getWriter().write(resultJSON);
+   }
+   
+   public String getJSON2(String reser_no, String payment_price)
+   {
+      
+      JSONObject jsonObject = new JSONObject();
+      
+      int result = sqlSession.getMapper(ReservationImpl.class).reserCancle(reser_no); 
+      
+      jsonObject.put("sucOrFail", result);
+      
+      return jsonObject.toString();
    }
    
 }

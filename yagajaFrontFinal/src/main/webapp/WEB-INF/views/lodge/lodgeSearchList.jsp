@@ -142,7 +142,7 @@ request.setCharacterEncoding("UTF-8");
 <div id="map" style="width: 600px; height: 600px;" position: absolute;" ></div>
 <script>
 var map = new naver.maps.Map('map', {
-    center: new naver.maps.LatLng(37.4787503, 126.8786525),
+    center: new naver.maps.LatLng(${addr_lat}, ${addr_long}),
     zoom: 10
 });
 

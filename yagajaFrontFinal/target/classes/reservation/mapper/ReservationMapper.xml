@@ -5,22 +5,47 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="reservation.ReservationImpl">
-	<!-- 로그인 -->
-	<select id="reserView" resultType="reservation.ReservationVO">
-		select * from 
-			lodge L inner join room R on L.lodge_no=R.lodge_no 
-					inner join lodge_addr A on L.lodge_no=A.lodge_no
-						where L.lodge_no=#{param1} and R.room_no=#{param2}
-	</select>
-	
-	<insert id="insertReser" parameterType="reservation.ReservationVO">
-		insert into reservation (reser_no, reser_name, check_in, check_out, visit_type, payment_type, payment_price, lodge_no, member_no, room_no)
-		values(reservation_no_seq.nextval, #{reser_name}, to_date(#{check_in},'yyyy-mm-dd hh24:mi:ss'), to_date(#{check_out},'yyyy-mm-dd hh24:mi:ss'), #{visit_type}, #{payment_type}, #{payment_price}, #{lodge_no}, #{member_no}, #{room_no})
-	</insert>
-	
-	<update id="insertM_point">
-		update member set m_point=#{param1} where member_no=#{param2}
-	</update>
-	
+   <!-- 로그인 -->
+   <select id="reserView" resultType="reservation.ReservationVO">
+      select * from 
+         lodge L inner join room R on L.lodge_no=R.lodge_no 
+               inner join lodge_addr A on L.lodge_no=A.lodge_no
+                  where L.lodge_no=#{param1} and R.room_no=#{param2}
+   </select>
+   
+   <insert id="insertReser" parameterType="reservation.ReservationVO">
+      insert into reservation (reser_no, reser_name, check_in, check_out, visit_type, payment_type, payment_price, lodge_no, member_no, room_no)
+      values(reservation_no_seq.nextval, #{reser_name}, to_date(#{check_in},'yyyy-mm-dd hh24:mi:ss'), to_date(#{check_out},'yyyy-mm-dd hh24:mi:ss'), #{visit_type}, #{payment_type}, #{payment_price}, #{lodge_no}, #{member_no}, #{room_no})
+   </insert>
+   
+   <update id="insertM_point">
+      update member set m_point=#{param1} where member_no=#{param2}
+   </update>
+   
+   <select id="getTotalCount" resultType="int">
+      select count(*) from reservation where member_no=#{param1}
+   </select>
+   
+   <select id="reserVationList" resultType="reservation.ReservationVO">
+      select * from (select Tb.*, to_char(check_in,'yyyy"년"mm"월"dd"일" hh24:mi:ss') as reser_check_in,
+                        to_char(check_out,'yyyy"년"mm"월"dd"일" hh24:mi:ss') as reser_check_out, 
+                        to_char(reser_date,'yyyy"년"mm"월"dd"일" hh24:mi:ss') as reser_date_change,
+                        trunc((check_in-sysdate)*24*60*60) as before, trunc((check_out-sysdate)*24*60*60) as after, rownum rNum
+                        from (select * from reservation R inner join lodge L on R.lodge_no=L.lodge_no
+                                                        inner join lodge_addr LA on R.lodge_no=LA.lodge_no order by reser_no desc
+                                                        ) Tb ) where rNum between #{param1} and #{param2}
+   </select>
+   
+   <delete id="reserCancle">
+      delete from reservation where reser_no=#{param1}
+   </delete>
+   
+   <select id="reserSms" resultType="reservation.ReservationVO">
+		select * from (select Tb.*, rownum rNum from 
+		    (select * from reservation R inner join lodge L on R.lodge_no=L.lodge_no
+		        inner join room RO on R.room_no=RO.room_no order by reser_no desc) Tb  ) where rNum = 1  
+   </select>
+   
+   
 
 </mapper>

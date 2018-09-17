@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" 
+   uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,71 +29,181 @@
 .modal-dialog {
         display: inline-block;
         text-align: left;
-        vertical-align: middle;
+        vertical-align: middle; 
 }
 </style>
+
+<script>
+$(function(){
+   $('#cancleBtn').click(function(){
+      
+      var con = confirm("결제를 취소하시겠습니까?");
+      
+      if(con==true)
+      {
+         $.ajax({
+            url : "../reser/reservationCancle.do",
+            type : "get",
+            contentType : "text/html; charset:utf-8",
+            data : 
+               {
+                  reser_no : $('#reser_no').val(),
+                  payment_price : $('#payment_price').val()
+               },
+            success : function(suc)
+            {
+               var obj = JSON.parse(suc)
+               
+               if(obj.sucOrFail == 1)
+               {
+                  alert("예약이 취소되었습니다.");
+                  location.reload();
+               }
+               else
+               {
+                  alert("예약취소 실패")
+               }
+               
+            },
+            error : function(e)
+            {
+               alert("실패:"+e.status);
+            }
+            
+         });
+      }
+   });
+});
+
+</script>
+
 <body>
 
 <div class="container-comm" role="main">
+ 
+   
     <div class="contents">
       <!-- 예약 내역 리스트 -->
-      <br />
-      <h2 class="article-title">숙소예약<span>예약 완료 후, 최근 60일간 내역이 보여집니다.</span></h2>
       <div class="reserve-content">
+          <h2 class="article-title">숙소예약</h2>
         <section class="history-cont">
           <div class="history-list">
           
-          <!-- 반복문 사용한다면 여기서 부터 -->
-         	 <div class="history-item ready-reserve">
-            	  <div class="info">
-                	<h4>
-                  	<a href="숙박시설상세보기사이트주소">숙박시설 이름</a>
-                 	 <span>숙소타입</span>
-               		 </h4>
-               		 <div class="txt-address">숙박시설 주소 </div>
-               		 <ul class="reserveinfo-list">
-		                 <li class="reserveinfo-item"><span>예약번호</span><b>예약번호</b></li>
-		                 <li class="reserveinfo-item"><span>입실</span><b>입실날짜시간</b></li>
-		                 <li class="reserveinfo-item"><span>퇴실</span><b>퇴실날짜시간</b></li>
-		                 <li class="reserveinfo-item"><span>예약일</span><b>예약날짜시간</b></li>
-		                 <li class="reserveinfo-item"><span>판매가</span><em>판매가격</em></li>
-             	   </ul>
-             	 </div>
-             	 <div class="btns">
-                	<button type="button" id="payinfo" class="btn dorne-btn" style="background-color:#ff3479" data-target="#layerpop" data-toggle="modal">결제 내역 확인</button>
+          <!-- 반복문 사용한다면 여기서 부터 -->  
+          <c:forEach items="${lists }" var="row">
+             <div class="history-item ready-reserve">
+                 <div class="info">
+                   <h4>
+                     <a href="../lodge/lodgeView?lodgn_no=${row.lodge_no }">${row.lodge_name }</a>
+                     <span>${row.lodge_type }</span>
+                      </h4>
+                      <div class="txt-address">${row.addr_common } ${row.addr_detail }</div>
+                      <ul class="reserveinfo-list">
+                       <li class="reserveinfo-item" id="reser_no" value="${row.reser_no }"><span>예약번호</span><b>${row.reser_no }</b></li>
+                       <li class="reserveinfo-item" id="" ><span>예약타입</span><b>${row.reser_type }</b></li>
+                       <li class="reserveinfo-item"><span>입실</span><b>${row.reser_check_in }</b></li>
+                       <li class="reserveinfo-item"><span>퇴실</span><b>${row.reser_check_out }</b></li>
+                       <li class="reserveinfo-item"><span>예약일</span><b>${row.reser_date_change }</b></li>
+                       <li class="reserveinfo-item" id="payment_price" value="${row.payment_price }"><span>판매가</span><em><fmt:formatNumber value="${row.payment_price }" groupingUsed="true"/>원</em></li>
+                   </ul>
                  </div>
+                 
+                 
+                 <div class="btns">
+                    <c:choose>
+                       <c:when test="${row.after < 0 or (row.before < 0 and row.after > 0)}">
+                       <button type="button" id="payinfo" class="btn dorne-btn" style="background-color:#ff3479" data-target="#layerpop" data-toggle="modal">결제 내역 확인</button>
+                       </c:when>
+                       <c:otherwise>
+                          <button type="button" id="payinfo" class="btn dorne-btn" style="background-color:#ff3479" data-target="#layerpop" data-toggle="modal">결제 내역 확인</button>
+                            <button type="button" class="btn dorne-btn" style="background-color:#ff3479" id="cancleBtn">예약 취소</button>
+                       </c:otherwise>
+                    </c:choose>
+                   
+                 </div>
+
                  
 <div class="modal fade" id="layerpop" >
 <div class="modal-dialog">
 <div class="modal-content">
 <!-- header -->
 <div class="modal-header">
+
+
+<!-- header title -->
+<h4 class="modal-title">결제내역</h4>
 <!-- 닫기(x) 버튼 -->
 <button type="button" class="close" data-dismiss="modal">×</button>
-<!-- header title -->
-<h4 class="modal-title">안녕하세요 방갑스니다</h4>
 </div>
 <!-- body -->
 <div class="modal-body">
-몸뚱이입니다
+
+<table style="width:400px;">
+<colgroup>
+   <col width="30%"/>
+   <col width="70%"/>
+</colgroup>
+
+   <tr>
+      <td style="border:black 1px solid; padding-left:5px;">예약번호</td>
+      <td style="border:black 1px solid; padding-left:5px;">${row.reser_no }</td>
+   </tr>
+   <tr>
+      <td style="border:black 1px solid; padding-left:5px;">예약자명</td>
+      <td style="border:black 1px solid; padding-left:5px;">${row.reser_name }</td>
+   </tr>
+   <tr>
+      <td style="border:black 1px solid; padding-left:5px;">연락처</td>
+      <td style="border:black 1px solid; padding-left:5px;">${sessionScope.siteUserInfo.phone}</td>
+   </tr>
+   <tr>
+      <td style="border:black 1px solid; padding-left:5px;">결제수단</td>
+      <td style="border:black 1px solid; padding-left:5px;">${row.payment_type}</td>
+   </tr>
+   <tr>
+      <td style="border:black 1px solid; padding-left:5px;">결제금액</td>
+      <td style="border:black 1px solid; padding-left:5px;"><fmt:formatNumber value="${row.payment_price}" groupingUsed="true"/>원</td>
+   </tr>
+   <tr>
+      <td style="border:black 1px solid; padding-left:5px;">적립포인트</td>
+      <td style="border:black 1px solid; padding-left:5px;"><fmt:formatNumber value="${row.payment_price * 0.05}" groupingUsed="true"/>마일리지</td>
+   </tr>
+</table>
 </div>
 <!-- Footer -->
 <div class="modal-footer">
 
-<button type="button" class="btn" data-dismiss="modal">닫기</button>
+<button type="button" class="btn" data-dismiss="modal" style="background-color:#ff3479; margin-right:10px; color:white;">닫기</button>
 </div>
 </div>
 </div>
 </div>
-	              <!-- 예약현황은 변동이 있어야할듯?
-	              체크인 X -> 입실전
-	              체크인 O -> 사용중  
-	              체크아웃 O or 예약한 날짜가 지남 -> 사용종료
-	              -->
-              <div class="tags">
-                <span class="tag" style="font-size:0.8em; color:#ffffff; background-color:#878787; padding:5px">예약현황(입실전,사용중,사용종료)</span>
-              </div>
+                 <!-- 예약현황은 변동이 있어야할듯?
+                 체크인 X -> 입실전
+                 체크인 O -> 사용중  
+                 체크아웃 O or 예약한 날짜가 지남 -> 사용종료
+                 -->
+                 
+              <c:choose>
+                 <c:when test="${row.before >= 0 }">
+                 <div class="tags">
+                   <span style="font-size:1em; font-weight:bold; color:black;">예약현황: </span><span class="tag" style="font-size:1em; color:blue; background-color:white; padding:5px; font-weight:bold;">입실전</span>
+                 </div>
+               </c:when>
+               <c:when test="${row.before < 0 and row.after >= 0 }">
+               <div class="tags">
+                   <span style="font-size:1em; font-weight:bold; color:black;">예약현황: </span><span class="tag" style="font-size:1em; color:red; background-color:white; padding:5px; font-weight:bold;">사용중</span>
+                </div>
+                </c:when>
+                <c:otherwise>
+                <div class="tags">
+                   <span style="font-size:1em; font-weight:bold; color:black;">예약현황: </span><span class="tag" style="font-size:1em; color:gray; background-color:white; padding:5px; font-weight:bold;">사용종료</span>
+                </div>
+                </c:otherwise>
+              </c:choose> 
+
             </div>
+            </c:forEach>
          <!-- 반복문 끝 -->
           </div>
         </section>
@@ -180,9 +292,17 @@
           <button type="button" class="btn-layer-close"><span class="sc-out">닫기</span></button>
         </div>
       </div>
+ <div class="row text-center" style="text-align:center">
+      <ul class="pagination">
+         ${pagingImg }
+      </ul>
+   </div>
       <!-- END: Layer Popup: 예약 취소 -->
     </div>
+
   </div>
+  
+          
 
 
 

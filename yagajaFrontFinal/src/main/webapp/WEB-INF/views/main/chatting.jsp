@@ -207,7 +207,7 @@
 			
 			if (name==="admin") {
 				onewmsg.className = "othertalk";
-				onewmsg.innerHTML = "<div class=\"profile_image\" style=\"background: url(./resources/common/img/core-img/profile_image.png) no-repeat;\">\n"
+				onewmsg.innerHTML = "<div class=\"profile_image\" style=\"background: url(./resources/common/img/core-img/admin.png) no-repeat;\">\n"
 						+ "</div>\n"
 						+ "<div class=\"box\">\n"
 						+ "<div class=\"profile_name\">\n"
@@ -313,9 +313,9 @@
             
             
             
-            
+            /* 본인 ip주소로 설정 */
             // Create a new instance of the websocket
-            webSocket = new WebSocket('ws://192.168.0.77:8282/yagajaFinal/echo/'+roomId);
+            webSocket = new WebSocket('ws://192.168.0.178:8282/yagajaFinal/echo/'+roomId);
 
             /**
              * Binds functions to the listeners for the websocket.

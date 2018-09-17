@@ -4,7 +4,9 @@
 <%@page import="org.springframework.web.context.annotation.SessionScope"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>   
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>   
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+ 
 <!DOCTYPE html>
 <html lang="en">
 <%@include file="/resources/include/yagajaTop.jsp"%>
@@ -90,13 +92,13 @@ System.out.println(search_local);
 	                                  </tr>
 	                                  <tr>
 	                                     <td style="font-size:12px"><input type="radio" name="select" value="rent" /><font color="red">주말</font> / 주중 대실</td>
-	                                     <td style="font-size:20px; text-align:right"><font color="red"><b>${row.w_rent_price }</b></font> / <b>${row.d_rent_price }</b></td>
+	                                     <td style="font-size:20px; text-align:right"><font color="red"><b><fmt:formatNumber value="${row.w_rent_price }" pattern="#,###" />원</b></font> / <b><fmt:formatNumber value="${row.d_rent_price }" pattern="#,###" />원</b></td>
 	                                  </tr>
 	                                  <tr>
 	                                     <td style="font-size:12px">
 	                                        <input type="radio" name="select" value="sleep" /><font color="red">주말</font> / 주중 숙박
 	                                     </td>
-	                                     <td style="font-size:20px; text-align:right"><font color="red"><b>${row.w_sleep_price }</b></font> / <b>${row.d_sleep_price }</b> </td>
+	                                     <td style="font-size:20px; text-align:right"><font color="red"><b><fmt:formatNumber value="${row.w_sleep_price }" pattern="#,###" />원</b></font> / <b><fmt:formatNumber value="${row.d_sleep_price }" pattern="#,###" />원</b> </td>
 	                                  </tr>
 	                                  <tr>
 	                                     <td colspan="2">

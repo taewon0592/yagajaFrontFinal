@@ -22,13 +22,13 @@
 
 	<!-- Contact Form Area -->
 	<div class="contact-form-area equal-height" style="height:1266px;">
-	<div class="feature-favourite">
+<!-- 	<div class="feature-favourite">
 		<div style="padding:0px 50px 20px;"><b>
 			<a style="color:black;" href="../lodge/lodgeList.do?mode=모텔">모텔</a>&nbsp;&nbsp;&nbsp;<span style="color:#aeaeae;">｜</span>&nbsp;&nbsp;&nbsp;
 			<a style="color:black;" href="../lodge/lodgeList.do?mode=호텔/리조트">호텔/리조트</a>&nbsp;&nbsp;&nbsp;<span style="color:#aeaeae;">｜</span>&nbsp;&nbsp;&nbsp;
 			<a style="color:black;" href="../lodge/lodgeList.do?mode=펜션/풀빌라">펜션/풀빌라</a>&nbsp;&nbsp;&nbsp;<span style="color:#aeaeae;">｜</span>&nbsp;&nbsp;&nbsp;
 			<a style="color:black;" href="../lodge/lodgeList.do?mode=게스트하우스">게스트하우스</a></b></div>
-	</div>		
+	</div> -->		
 			<c:choose>
 				<c:when test="${mode eq '모텔' }">
 				<div class="section-heading dark text-left">

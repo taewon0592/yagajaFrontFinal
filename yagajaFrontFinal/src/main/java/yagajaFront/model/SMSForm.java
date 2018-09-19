@@ -44,12 +44,12 @@ public class SMSForm {
 			PrintWriter out = response.getWriter();
 			content = ""//request.getParameter("content");
 			
-			 + "[야가자 예약]"
-			 + reser_name + "님의 예약이 완료 되었습니다."
-			 + "▶예약정보◀"
-			 + lodge_name + "(" + room_type + ")"
-			 + "입실일시 : " + check_in
-			 + "예약번호 : " + reser_no;
+			 + "[야가자 예약] "
+			 + reser_name + " 님의 예약이 완료 되었습니다. "
+			 + " ▶예약정보◀ "
+			 + lodge_name + "(" + room_type + ") "
+			 + " 입실일시 : " + check_in
+			 + " 예약번호 : " + reser_no;
 			out.println(content);
 		}
 		System.out.println("content:"+content);

@@ -11,7 +11,7 @@ public class YagajaMemberVO {
 	private String pass;
 	private String nickname;
 	private String phone;
-	private String m_point;
+	private int m_point;
 	private String email;
 	private String regidate;
 	private String authority;
@@ -22,7 +22,7 @@ public class YagajaMemberVO {
 		
 	}
 
-	public YagajaMemberVO(String member_no, String id, String pass, String nickname, String phone, String m_point,
+	public YagajaMemberVO(String member_no, String id, String pass, String nickname, String phone, int m_point,
 			String email, String regidate, String authority, String choice) {
 		super();
 		this.member_no = member_no;
@@ -77,11 +77,11 @@ public class YagajaMemberVO {
 		this.phone = phone;
 	}
 
-	public String getM_point() {
+	public int getM_point() {
 		return m_point;
 	}
 
-	public void setM_point(String m_point) {
+	public void setM_point(int m_point) {
 		this.m_point = m_point;
 	}
 

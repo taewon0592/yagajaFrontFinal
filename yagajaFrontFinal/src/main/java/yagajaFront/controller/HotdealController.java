@@ -8,6 +8,7 @@ import java.util.Vector;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import auction.YagajaAuctionImpl;
 import hotdeal.HotdealDAO;
 import hotdeal.HotdealDTO;
 import hotdeal.HotdealImpl;
+import member.YagajaMemberImpl;
 import member.YagajaMemberVO;
 import reservation.ReservationImpl;
 import reservation.ReservationVO;
@@ -105,12 +107,13 @@ public class HotdealController {
    
      //예약하기 프로그램 
       @RequestMapping("/reser/hotdealreservationProc.do")
-      public String hotdealreservationProc(Model model, HttpServletRequest req, HttpServletResponse resp) throws IOException
+      public String hotdealreservationProc(Model model, HttpServletRequest req, HttpServletResponse resp, HttpSession session) throws IOException
       {   
         PrintWriter writer = resp.getWriter();
         resp.setContentType("text/html; charset=UTF-8");
          ReservationVO reserVO = new ReservationVO();
          YagajaMemberVO memberVO = new YagajaMemberVO();
+         
          String backAndGo = null;
          String reser_name = req.getParameter("reser_name");
          String visit_type = req.getParameter("visit_type");
@@ -122,12 +125,19 @@ public class HotdealController {
          String payment_price = req.getParameter("payment_price");
          String lodge_no = req.getParameter("lodge_no");
          String room_no = req.getParameter("room_no");
-         String member_no = req.getParameter("member_no");
          String reser_type = req.getParameter("reser_type");
          String hotdeal_sell1 = req.getParameter("hotdeal_sell");
+        
+         String member_no = req.getParameter("member_no");
+         String id = req.getParameter("id");
+         String pass = req.getParameter("pass");
+         String nickname= req.getParameter("nickname");
+         String phone = req.getParameter("phone");
+         String email = req.getParameter("email");
+         
          int hotdeal_sell = Integer.parseInt(hotdeal_sell1);
          int m_point = Integer.parseInt(m_point1)-Integer.parseInt(payment_price);
-        
+         
          reserVO.setReser_name(reser_name);
          reserVO.setVisit_type(visit_type);
          reserVO.setPayment_price(payment_price);
@@ -145,10 +155,17 @@ public class HotdealController {
             int sucOrFail = sqlSession.getMapper(HotdealImpl.class).insertHotdealReser(reserVO);
             //핫딜예약 후 마일리지 차감
             int ex = sqlSession.getMapper(HotdealImpl.class).decreaseM_point(m_point, member_no);
-            memberVO.setM_point(String.valueOf(m_point));
             //마일리지차감이 되면 핫딜판매개수 감소
             int hotdealCount = sqlSession.getMapper(HotdealImpl.class).hotdeal_Sell_Count(hotdeal_sell,hotdeal_no);
-            
+            memberVO.setMember_no(member_no);
+            memberVO.setId(id);
+            memberVO.setPass(pass);
+            memberVO.setEmail(email);
+            memberVO.setPhone(phone);
+            memberVO.setNickname(nickname);
+            memberVO.setM_point(m_point);
+            System.out.println("마일리지:"+memberVO.getM_point());
+            session.setAttribute("siteUserInfo",memberVO);
             if(sucOrFail == 1 && ex == 1 && hotdealCount==1)
             {
                return "redirect:/reser/reservationList.do?member_no="+member_no;

@@ -265,8 +265,7 @@ window.onload = function()
                             <nav>
                                 <ul id="listingNav">
                                     <li class="active"><a href="#paycheck">필수입력사항</a></li>
-                                    <li class="#"><a href="#review">후기</a></li>
-                                    <li><a href="#lomap">위치</a></li>
+
                                 </ul>
                             </nav>
                         </div>
@@ -277,15 +276,22 @@ window.onload = function()
 	                     <input type="hidden" name="hotdeal_price" id="hotdeal_price" value="${dto.hotdeal_price }" />    
 	                     <input type="hidden" name="payment_price" id="payment_price" value="${dto.hotdeal_price }" /> 
 						 <input type="hidden" name="hotdeal_no" id="hotdeal_no" value="${dto.hotdeal_no }" />
-					 	 <input type="hidden" name="member_no" id="member_no" value="${sessionScope.siteUserInfo.member_no}" /> 
 					 	 <input type="hidden" name="room_no" id="room_no" value="${dto.room_no }" />
-						 <input type="hidden" name="m_point" id="m_point" value="${sessionScope.siteUserInfo.m_point}" />
 						 <input type="hidden" name="lodge_no" id="lodge_no" value="${dto.lodge_no }" />
 						 <input type="hidden" name="hotdeal_sday" id="hotdeal_sday" value="${dto.hotdeal_sday}" />
 						 <input type="hidden" name="hotdeal_eday" id="hotdeal_eday" value="${dto.hotdeal_eday }" />
 						 <input type="hidden" name="reser_type" id="reser_type" value="핫딜"  />   
-						 <input type="hidden" name="hotdeal_sell" id="hotdeal_sell" value="${dto.hotdeal_sell }"  />   
-                     
+						 <input type="hidden" name="hotdeal_sell" id="hotdeal_sell" value="${dto.hotdeal_sell }"  />
+						    
+                     	 <input type="hidden" name="member_no" id="member_no" value="${sessionScope.siteUserInfo.member_no}" />
+                     	 <input type="hidden" name="id" id="id" value="${sessionScope.siteUserInfo.id}" />
+                     	 <input type="hidden" name="pass" id="pass" value="${sessionScope.siteUserInfo.pass}" />
+                     	 <input type="hidden" name="nickname" id="nickname" value="${sessionScope.siteUserInfo.nickname}" />
+                     	 <input type="hidden" name="phone" id="phone" value="${sessionScope.siteUserInfo.phone}" />
+                      	 <input type="hidden" name="m_point" id="m_point" value="${sessionScope.siteUserInfo.m_point}" />
+                     	 <input type="hidden" name="email" id="email" value="${sessionScope.siteUserInfo.email}" />
+                     	 
+                      	 
                           <div class="row mt-4" style="vertical-align:middle;">
                           <span style="font-size:12px; padding-left:20px; vertical-align:middle; margin-top:5px;">
                              예약자명
@@ -319,38 +325,8 @@ window.onload = function()
                               </div>
                           </div>
                        <hr/>
-                        <div class="listing-reviews-area mt-100" id="review">
-                            <h4>후기</h4>
-                            <div class="single-review-area">
-                                <div class="reviewer-meta d-flex align-items-center">
-                                    <img src="img/clients-img/1.jpg" alt="">
-                                    <div class="reviewer-content">
-                                        <div class="review-title-ratings d-flex justify-content-between">
-                                            <h5>“The best Burger in town”</h5>
-                                            <div class="ratings">
-                                                <img src="img/clients-img/star-fill.png" alt="">
-                                                <img src="img/clients-img/star-fill.png" alt="">
-                                                <img src="img/clients-img/star-fill.png" alt="">
-                                                <img src="img/clients-img/star-fill.png" alt="">
-                                                <img src="img/clients-img/star-fill.png" alt="">
-                                            </div>
-                                        </div>
-                                        <p>내용입니다.</p>
-                                    </div>
-                                </div>
-                                <div class="reviewer-name">
-                                    <h6>작성자 닉네임</h6>
-                                    <p>작성일자</p>
-                                </div>
-                            </div>
-                        </div>
+                       
 
-                        <div class="location-on-map mt-50" id="lomap">
-                            <h4>Location on map</h4>
-                            <div class="location-map">
-                                <div id="locationMap"></div>
-                            </div>
-                        </div>
 
                     </div>
                 </div>
@@ -385,8 +361,7 @@ window.onload = function()
                         			※핫딜숙박예약은 사용시작일과 마감일 사이에서 연박없이 가능합니다<br />
                         			<br />
                         			※수량이 모두 판매되면 조기 마감될 수 있습니다.<br />
-                        			<br />
-                        			※예약 시 적립되는 마일리지는 없습니다.<br /> 
+                        			
                         			&nbsp;&nbsp;&nbsp;
                         		</div>
                         		<hr style="border:solid 1px white;"/>

@@ -243,7 +243,7 @@ function confrm(f)
                                 <ul id="listingNav">
                                     <li class="active"><a href="#overview">필수입력사항</a></li>
                                     <li><a href="#menu">취소규정 및 약관동의</a></li>
-                           <li><a href="#review">후기</a></li>
+                           
                                 </ul>
                             </nav>
                         </div>
@@ -333,38 +333,9 @@ function confrm(f)
                      </ul>
                         </div>
 
-                        <div class="listing-reviews-area mt-100" id="review">
-                            <h4>후기</h4>
-                            <div class="single-review-area">
-                                <div class="reviewer-meta d-flex align-items-center">
-                                    <img src="img/clients-img/1.jpg" alt="">
-                                    <div class="reviewer-content">
-                                        <div class="review-title-ratings d-flex justify-content-between">
-                                            <h5>“The best Burger in town”</h5>
-                                            <div class="ratings">
-                                                <img src="img/clients-img/star-fill.png" alt="">
-                                                <img src="img/clients-img/star-fill.png" alt="">
-                                                <img src="img/clients-img/star-fill.png" alt="">
-                                                <img src="img/clients-img/star-fill.png" alt="">
-                                                <img src="img/clients-img/star-fill.png" alt="">
-                                            </div>
-                                        </div>
-                                        <p>내용입니다.</p>
-                                    </div>
-                                </div>
-                                <div class="reviewer-name">
-                                    <h6>작성장 닉네임</h6>
-                                    <p>작성일자</p>
-                                </div>
-                            </div>
-                        </div>
+                      
 
-                        <div class="location-on-map mt-50" id="lomap">
-                            <h4>Location on map</h4>
-                            <div class="location-map">
-                                <div id="locationMap"></div>
-                            </div>
-                        </div>
+           
 
                     </div>
                 </div>

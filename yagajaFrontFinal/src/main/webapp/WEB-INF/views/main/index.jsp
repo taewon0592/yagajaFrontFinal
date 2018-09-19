@@ -71,7 +71,7 @@ $(document).ready(function(){
                         <h2>Yagaja 와 함께</h2>
                         <h4>여행을 떠나 볼까요?</h4>
                     </div>
-                    <!-- Hero Search Form -->
+                 <!-- Hero Search Form -->
                <div class="hero-search-form">
                         
                         <!-- Tabs Content -->
@@ -115,7 +115,7 @@ $(document).ready(function(){
                             </div>
                            
                         </div>
-                    </div>
+                    </div> 
                 </div>
             </div>
         </div>

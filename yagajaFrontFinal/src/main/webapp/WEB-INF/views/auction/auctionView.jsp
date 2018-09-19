@@ -191,31 +191,7 @@ function m_pointcheck(f)
                   <input type="hidden" name="reser_type" value="경매" />
                   
                   
-                        <div class="listing-reviews-area mt-100" id="review">
-                            <h4>후기</h4>
-                            <div class="single-review-area">
-                                <div class="reviewer-meta d-flex align-items-center">
-                                    <img src="img/clients-img/1.jpg" alt="">
-                                    <div class="reviewer-content">
-                                        <div class="review-title-ratings d-flex justify-content-between">
-                                            <h5>“The best Burger in town”</h5>
-                                            <div class="ratings">
-                                                <img src="img/clients-img/star-fill.png" alt="">
-                                                <img src="img/clients-img/star-fill.png" alt="">
-                                                <img src="img/clients-img/star-fill.png" alt="">
-                                                <img src="img/clients-img/star-fill.png" alt="">
-                                                <img src="img/clients-img/star-fill.png" alt="">
-                                            </div>
-                                        </div>
-                                        <p>내용입니다.</p>
-                                    </div>
-                                </div>
-                                <div class="reviewer-name">
-                                    <h6>작성자 닉네임</h6>
-                                    <p>작성일자</p>
-                                </div>
-                            </div>
-                        </div>
+               
 
                     </div>
                 </div>
